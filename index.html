@@ -13,16 +13,25 @@
 </head>
 <body>
     <div id="app">
-        <div class="searchBar-box center-page">
+        <div class="searchBar-box padding">
             <input type="text" v-model="userSearch" @keyup.enter="isSearchFilm()">
             <button @click="isSearchFilm()">Search</button>
         </div>
-        <div class="searchResult-box center-page">
-            <ul>
-                <li class="title"></li>
-                <li class="original-title"></li>
-                <li class="language"></li>
-                <li class="rating"></li>
+        <div class="searchResult-box padding">
+            <ul v-for="data in searchList">
+                <li class="title">
+                    Title: {{data.title}}
+                </li>
+                <li class="original-title">
+                    Original Title: {{data.original_title}}
+                </li>
+                <li class="language">
+                    Original Language: {{data.original_language}}
+                </li>
+                <li class="vote">
+                    Vote: {{data.vote_average}}
+
+                </li>
             </ul>
         </div>
 

@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-.center-page { /* TEMP*/
-    margin: 0 auto;
-    text-align: center;
+.padding { /* TEMP*/
+    padding: 20px;
 }
