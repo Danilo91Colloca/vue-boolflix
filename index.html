@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CDN VUE -->
-     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <!-- CDN axios library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CDN VUE -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- CDN axios library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+  <title>BOOLFLIX DC</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="app">
-        <div class="searchBar-box padding">
-            <input type="text" v-model="userSearch" @keyup.enter="isSearchFilm()">
-            <button @click="isSearchFilm()">Search</button>
-        </div>
-        <div class="searchResult-box padding">
-            <ul v-for="data in searchList">
-                <li class="title">
-                    Title: {{data.title}}
-                </li>
-                <li class="original-title">
-                    Original Title: {{data.original_title}}
-                </li>
-                <li class="language">
-                    Original Language: {{data.original_language}}
-                </li>
-                <li class="vote">
-                    Vote: {{data.vote_average}}
+  <!-- VUE JS APP -->
+  <div id="app">
+      <!-- PAGE WRAPPER -->
+    <div class="page-wrapper">
+        <!-- HEADER -->
+        <div class="header-section flex">
+          <div class="header-nav left">
 
-                </li>
-            </ul>
+          </div>
+          <div class="header-nav right">
+            <div class="searchBar-box padding">
+              <input type="text" v-model="userSearch" @keyup.enter="isSearchFilm()">
+              <button @click="isSearchFilm()">Search</button>
+            </div>
+          </div>
         </div>
+       
+      
+          <!-- /HEADER -->
+      <div class="searchResult-box padding">
+        <ul v-for="data in searchList">
+          <li class="title">
+            Title: {{data.title}}
+          </li>
+          <li class="original-title">
+            Original Title: {{data.original_title}}
+          </li>
+          <li class="language">
+            Original Language: {{data.original_language}}
+          </li>
+          <li class="vote">
+            Vote: {{data.vote_average}}
 
+          </li>
+        </ul>
+      </div>
     </div>
-    
-    <script src="js/script.js"></script>
+    <!-- /PAGE WRAPPER -->
+  </div>
+  <!-- /VUE JS APP -->
+
+  <!-- script js -->
+  <script src="js/script.js"></script>
 </body>
 </html>

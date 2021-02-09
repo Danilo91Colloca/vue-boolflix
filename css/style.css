@@ -1,13 +1,30 @@
+/*>>>>>>>>>>>>>>>>>>>>>> UTILITY SECTION <<<<<<<<<<<<<<<<<<<*/
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
-
+ul {
+  list-style: none;
+}
+.flex {
+  display: flex;
+}
+/*>>>>>>>>>>>>>>>>>>>>>> LAYOUT SECTION <<<<<<<<<<<<<<<<<<*/
+.header-section {
+  width: 100vw;
+  height: 70px;
+  background-color: rgb(000, 000, 000);
+  justify-content: space-between;
+}
 .padding { /* TEMP*/
-    padding: 20px;
+  padding: 20px;
 }
 
 ul { /*TEMP*/
-    margin-bottom : 10px;
+  margin-bottom : 10px;
 }
+
+
+
+/*>>>>>>>>>>>>>>>>>>>>>>> STYLE SECTION <<<<<<<<<<<<<<<<<<<<<*/
