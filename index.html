@@ -13,6 +13,18 @@
 </head>
 <body>
     <div id="app">
+        <div class="searchBar-box center-page">
+            <input type="text" v-model="userSearch" @keyup.enter="isSearchFilm()">
+            <button @click="isSearchFilm()">Search</button>
+        </div>
+        <div class="searchResult-box center-page">
+            <ul>
+                <li class="title"></li>
+                <li class="original-title"></li>
+                <li class="language"></li>
+                <li class="rating"></li>
+            </ul>
+        </div>
 
     </div>
     
