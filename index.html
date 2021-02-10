@@ -38,33 +38,67 @@
             </div>
             <ul class="film-tab">
               <li class="title">
-                <span v-if="data.title">
-                  Title: {{data.title}}
-                </span>
-                <span v-else>
-                  Title: {{data.name}}
-                </span>
+                <div v-if="data.title">
+                  <span class="data-name">
+                    Title:
+                   </span>
+                   <span class="data-imported">
+                    {{data.title}}
+                   </span> 
+                </div>
+                <div v-else>
+                  <span class="data-name">
+                    Title:
+                  </span>
+                  <span class="data-imported">
+                    {{data.name}}
+                  </span>
+                </div>
               </li>
               <li class="original-title">
-                <span v-if="data.original_title">
-                  Original Title: {{data.original_title}}
-                </span>
-                <span v-else>
-                  Original Title: {{data.original_name}}
-                </span>
+                <div v-if="data.original_title">
+                  <span class="data-name">
+                    Original Title:
+                  </span>
+                  <span class="data-imported">
+                    {{data.original_title}}
+                  </span> 
+                </div>
+                <div v-else>
+                  <span class="data-name">
+                    Original Title:
+                  </span>
+                  <span class="data-imported">
+                    {{data.original_name}}
+                  </span>
+                </div>
               </li>
               <li class="language">
-                <span>Original Language:</span> 
-                <span v-if="langList.includes(data.original_language)">
+                <span class="data-name">Original Language:</span> 
+                <span class="data-imported-img" v-if="langList.includes(data.original_language)">
                   <img :src="'img/flags/' + data.original_language + '.png' " >
                 </span>
-                <span v-else>
+                <span class="data-imported" v-else>
                   {{data.original_language}}
                 </span>
               </li>
-              <li class="vote" >
+              <li class="vote flex" >
+                <span class="data-name">
+                  Vote:
+                </span>
                 <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
                 <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
+              </li>
+              <li class="overview-box">
+                <div class="overview-content">
+                  <span class="data-name">
+                    Overview:
+                  </span>
+                  <span class="data-imported">
+                    {{data.overview}}
+                  </span>
+                  
+                </div>
               </li>
             </ul>  
 
