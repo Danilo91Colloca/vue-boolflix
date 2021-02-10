@@ -4,6 +4,9 @@
   padding: 0px;
   box-sizing: border-box;
 }
+body {
+  background-color: #a9a9a9;
+}
 ul {
   list-style: none;
 }
@@ -16,18 +19,77 @@ ul {
   height: 70px;
   background-color: rgb(000, 000, 000);
   justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
 }
-.padding { /* TEMP*/
-  padding: 20px;
+.searchResult-box {
+  padding: 10px 5px;
+  flex-wrap: wrap;
 }
-
-ul { /*TEMP*/
-  margin-bottom : 10px;
-}
-
-
 
 /*>>>>>>>>>>>>>>>>>>>>>>> STYLE SECTION <<<<<<<<<<<<<<<<<<<<<*/
+.logo-head > img {
+  vertical-align: middle;
+  width: 150px;
+}
+.search-button{
+  color: #fff;
+}
+.searchBar-box>input{
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  margin-left: 15px;
+  width: 200px;
+  padding: 0px 5px;
+}
+/*main*/
+
+.film-tab {
+  width: 200px;
+  height: 300px;
+  padding: 10px;
+  overflow: auto;
+  background-color: #000;
+  color: #fff;
+  margin-right: 5px;
+  display: none;
+  transition: 2s;
+}
+.searchResult-container:hover .film-tab {
+  display: block;
+  border-radius: 8px;
+}
+.data-name {
+  font-weight: bolder;
+  font-size: 15px;
+}
+.data-imported {
+  font-size: 14px;
+}
+.data-imported-img > img {
+  width: 18px;
+  vertical-align: middle;
+}
+.vote > i {
+  color: #ffd700;
+}
+
 .img-preview {
-  width: 100px;
+  width: 200px;
+  height: 305px;
+  margin-right: 20px;
+}
+.searchResult-container {
+  padding: 5px 5px;
+}
+.no-img {
+  width: 200px;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  padding: 0px 5px;
+  margin-bottom: 5px;
 }

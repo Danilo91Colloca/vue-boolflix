@@ -12,7 +12,8 @@ new Vue ({
         .get('https://api.themoviedb.org/3/search/movie', {
             params: {
             api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
-            query : this.userSearch 
+            query : this.userSearch,
+            language : 'it_IT' 
           }
         })
         .then((returned)=>{
