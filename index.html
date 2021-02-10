@@ -34,13 +34,22 @@
         
             <!-- /HEADER -->
         <div class="searchResult-box padding">
-          <ul v-for="(data, index) in searchList" >
+          <ul v-for="(data, index) in searchList || (data, index) in searchedTv" >
             <li class="title">
-              {{index}}
-              Title: {{data.title}}
+              <span v-if="data.title">
+                Title: {{data.title}}
+              </span>
+              <span v-else>
+                Title: {{data.name}}
+              </span>
             </li>
             <li class="original-title">
-              Original Title: {{data.original_title}}
+              <span v-if="data.original_title">
+                Original Title: {{data.original_title}}
+              </span>
+              <span v-else>
+                Original Title: {{data.original_name}}
+              </span>
             </li>
             <li class="language">
               <span>Original Language:</span> 
@@ -52,7 +61,6 @@
               </span>
             </li>
             <li class="vote" >
-              Vote: {{data.vote_average}} 
               <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
               <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
             </li>
