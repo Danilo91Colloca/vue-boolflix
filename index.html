@@ -30,11 +30,9 @@
               </div>
             </div>
           </div>
-        
-        
             <!-- /HEADER -->
         <div class="searchResult-box padding">
-          <ul v-for="(data, index) in searchList || (data, index) in searchedTv" >
+          <ul v-for="(data, index) in searchList">
             <li class="title">
               <span v-if="data.title">
                 Title: {{data.title}}

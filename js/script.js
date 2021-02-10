@@ -38,9 +38,3 @@ new Vue ({
   }
 })
 Vue.config.devtools = true;
-
-/*
-indirizzo telefilm
-
-https://api.themoviedb.org/3/search/tv?api_key=d6a99b8f732b4dd111faf2e38c0dc146&language=it_IT&query=
-*/
