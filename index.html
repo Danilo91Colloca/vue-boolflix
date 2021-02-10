@@ -34,7 +34,7 @@
         
             <!-- /HEADER -->
         <div class="searchResult-box padding">
-          <ul v-for="(data, index) in searchList">
+          <ul v-for="(data, index) in searchList" >
             <li class="title">
               {{index}}
               Title: {{data.title}}
@@ -45,13 +45,13 @@
             <li class="language">
               Original Language: {{data.original_language}}
             </li>
-            <li class="vote">
-              <!-- Vote: {{data.vote_average}}  -->
-              <i :class="star + ' fa-star'"></i>
-              <i :class="star + ' fa-star'"></i>
-              <i :class="star + ' fa-star'"></i>
-              <i :class="star + ' fa-star'"></i>
-              <i :class="star + ' fa-star'"></i>
+            <li class="vote" >
+              Vote: {{data.vote_average}} 
+              <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
+              <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
+
+              <!-- <i :class="c + ' fa-star'"></i> -->
+
             </li>
           </ul>
         </div>
