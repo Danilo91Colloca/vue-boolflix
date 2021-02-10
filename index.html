@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- fontsAwesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <!-- CDN VUE -->
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <!-- CDN axios library -->
@@ -11,49 +13,54 @@
   <title>BOOLFLIX DC</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <!-- VUE JS APP -->
-  <div id="app">
-      <!-- PAGE WRAPPER -->
-    <div class="page-wrapper">
-        <!-- HEADER -->
-        <div class="header-section flex">
-          <div class="header-nav left">
+  <body>
+    <!-- VUE JS APP -->
+    <div id="app">
+        <!-- PAGE WRAPPER -->
+      <div class="page-wrapper">
+          <!-- HEADER -->
+          <div class="header-section flex">
+            <div class="header-nav left">
 
-          </div>
-          <div class="header-nav right">
-            <div class="searchBar-box padding">
-              <input type="text" v-model="userSearch" @keyup.enter="isSearchFilm()">
-              <button @click="isSearchFilm()">Search</button>
+            </div>
+            <div class="header-nav right">
+              <div class="searchBar-box padding">
+                <input type="text" v-model="userSearch" @keyup.enter="isSearchFilm()">
+                <button @click="isSearchFilm()">Search</button>
+              </div>
             </div>
           </div>
+        
+        
+            <!-- /HEADER -->
+        <div class="searchResult-box padding">
+          <ul v-for="(data, index) in searchList">
+            <li class="title">
+              {{index}}
+              Title: {{data.title}}
+            </li>
+            <li class="original-title">
+              Original Title: {{data.original_title}}
+            </li>
+            <li class="language">
+              Original Language: {{data.original_language}}
+            </li>
+            <li class="vote">
+              <!-- Vote: {{data.vote_average}}  -->
+              <i :class="star + ' fa-star'"></i>
+              <i :class="star + ' fa-star'"></i>
+              <i :class="star + ' fa-star'"></i>
+              <i :class="star + ' fa-star'"></i>
+              <i :class="star + ' fa-star'"></i>
+            </li>
+          </ul>
         </div>
-       
-      
-          <!-- /HEADER -->
-      <div class="searchResult-box padding">
-        <ul v-for="data in searchList">
-          <li class="title">
-            Title: {{data.title}}
-          </li>
-          <li class="original-title">
-            Original Title: {{data.original_title}}
-          </li>
-          <li class="language">
-            Original Language: {{data.original_language}}
-          </li>
-          <li class="vote">
-            Vote: {{isIntVote(data.vote_average)}}
-
-          </li>
-        </ul>
       </div>
+      <!-- /PAGE WRAPPER -->
     </div>
-    <!-- /PAGE WRAPPER -->
-  </div>
-  <!-- /VUE JS APP -->
+    <!-- /VUE JS APP -->
 
-  <!-- script js -->
-  <script src="js/script.js"></script>
-</body>
+    <!-- script js -->
+    <script src="js/script.js"></script>
+  </body>
 </html>
