@@ -49,9 +49,6 @@
               Vote: {{data.vote_average}} 
               <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
               <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
-
-              <!-- <i :class="c + ' fa-star'"></i> -->
-
             </li>
           </ul>
         </div>
