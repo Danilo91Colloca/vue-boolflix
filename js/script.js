@@ -3,6 +3,7 @@ new Vue ({
   data : {
     userSearch: '',
     searchList : [],
+    langList : ['de', 'en', 'fr', 'it', 'pt', 'us', 'zh']
   },
   methods : {
     isSearchFilm : function(){                    /*ricerca dinamica del titolo*/

@@ -43,7 +43,13 @@
               Original Title: {{data.original_title}}
             </li>
             <li class="language">
-              Original Language: {{data.original_language}}
+              <span>Original Language:</span> 
+              <span v-if="langList.includes(data.original_language)">
+                <img :src="'img/flags/' + data.original_language + '.png' " >
+              </span>
+              <span v-else>
+                {{data.original_language}}
+              </span>
             </li>
             <li class="vote" >
               Vote: {{data.vote_average}} 
