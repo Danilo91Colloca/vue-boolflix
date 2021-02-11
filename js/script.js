@@ -14,7 +14,10 @@ new Vue ({
     langList : ['de', 'en', 'fr', 'it', 'pt', 'us', 'zh']
   },
   mounted () {
-    this.defaultView();    
+    this.defaultView(); 
+    this.getMovieGenre(); //richiesta generi dei movies
+    this.getTvGenre(); //richiesta generi tv
+ 
   },
   methods : {
     resetSearch: function(){
@@ -51,8 +54,13 @@ new Vue ({
       this.searchFilm(); //richiesta movie
       this.searchTv(); //richiesta tv
       this.searchPerson(); //richiesta persone
-      this.getMovieGenre(); //richiesta generi dei movies
-      this.getTvGenre(); //richiesta generi tv
+
+      this.searchGenMovId();
+      this.movieByGenre();
+
+      this.searchGenTvId();
+      this.tvByGenre();
+
       if(this.userSearch ===''){
         this.defaultView();
       }
@@ -110,7 +118,6 @@ new Vue ({
       });
     }, 
     getMovieGenre: function(){ /* crea array generi film tramite genere */
-      if(this.userSearch !== ''){
         axios
         .get('https://api.themoviedb.org/3/genre/movie/list', {
           params: {
@@ -120,14 +127,11 @@ new Vue ({
         })
         .then((returned)=>{
           this.movieGenres = returned.data.genres;
-          this.searchGenMovId();
-          this.movieByGenre();
         });
-      }
+
 
     },
     getTvGenre: function(){ /* crea array generi tv tramite genere */
-      if(this.userSearch !== ''){
         axios
         .get('https://api.themoviedb.org/3/genre/tv/list', {
           params: {
@@ -137,10 +141,7 @@ new Vue ({
         })
         .then((returned)=>{
           this.tvGenres = returned.data.genres;
-          this.searchGenTvId();
-          this.tvByGenre();
         });
-      }
 
     },  
     searchGenMovId: function() { //se la parola inserita è inclusa ritorna il codice id

@@ -29,6 +29,10 @@ ul {
   background-color: #000;
 }
 .select-box {
+  position: absolute;
+  width: 150px;
+  height: 25px;
+  border: 1px solid red;
 
 }
 .jumbotron {
@@ -80,7 +84,7 @@ ul {
   vertical-align: middle;
   width: 120px;
 }
-.select-option li {
+.navMenu-option li {
   color:#fff;
   margin-right: 25px;
   cursor: pointer;
