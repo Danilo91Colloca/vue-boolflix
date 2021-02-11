@@ -22,6 +22,7 @@ ul {
   align-items: center;
   padding: 0px 20px;
   position: fixed;
+  z-index: 100;
 }
 .jumbotron {
   width: 100vw;
@@ -35,10 +36,11 @@ ul {
 .searchResult-box {
   padding: 10px 5px;
   flex-wrap:wrap;
-  
+  position: relative;
 }
 
 /*>>>>>>>>>>>>>>>>>>>>>>> STYLE SECTION <<<<<<<<<<<<<<<<<<<<<*/
+
 .logo-head > img {
   vertical-align: middle;
   width: 150px;
@@ -54,8 +56,28 @@ ul {
   width: 200px;
   padding: 0px 5px;
 }
-/*main*/
+/*+++++++++++++++main+++++++++*/
+/*default view*/
+.movieRow-box,
+.tvRow-box {
+  overflow-x: scroll;
+}
+.sectionDefault-title{
+  position: absolute;
+  padding-top: 25px;
+  padding-left: 15px;;
+}
+.sectionDefault-title > span {
+  color: #fff;
+  font-size: 38px;
+}
+.movie-section,
+.tv-section {
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
 
+/*search view*/
 .film-tab {
   width: 342px;
   height: 513px;

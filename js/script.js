@@ -13,7 +13,39 @@ new Vue ({
 
     langList : ['de', 'en', 'fr', 'it', 'pt', 'us', 'zh']
   },
+  mounted () {
+    this.defaultView();    
+  },
   methods : {
+    resetSearch: function(){
+      this.userSearch = '';
+      this.defaultView();
+    },
+    defaultView: function(){  
+      axios /* chiamata xhr per la sezione FILM */
+      .get('https://api.themoviedb.org/3/search/movie', {
+          params: {
+          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+          query : 'a ',
+          language : 'it_IT' 
+        }
+      })
+      .then((returned)=>{
+        this.movieList = returned.data.results;
+        this.allSearchList = [...this.allSearchList, ...this.movieList]  
+      });        
+      axios /*chiamata xhr per la sezione TV*/ 
+      .get('https://api.themoviedb.org/3/search/tv', {
+        params: {
+          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+          query : 's' 
+        }
+      })
+      .then((returned)=>{
+        this.tvList = returned.data.results;      
+        this.allSearchList = [...this.allSearchList, ...this.tvList]
+      }); 
+    },
     search : function(){
       this.allSearchList = []; //azzera lista ricerca
       this.searchFilm(); //richiesta movie
@@ -21,6 +53,9 @@ new Vue ({
       this.searchPerson(); //richiesta persone
       this.getMovieGenre(); //richiesta generi dei movies
       this.getTvGenre(); //richiesta generi tv
+      if(this.userSearch ===''){
+        this.defaultView();
+      }
     },
     searchFilm : function(){     /*ricerca dinamica del titolo e ritorna films*/
       if(this.userSearch !== '') {
@@ -36,7 +71,7 @@ new Vue ({
           this.movieList = returned.data.results;
           this.allSearchList = [...this.allSearchList, ...this.movieList]  
         });        
-      }    
+      }  
     },
     searchTv: function() {
       if(this.userSearch !== ''){
@@ -77,34 +112,34 @@ new Vue ({
     getMovieGenre: function(){ /* crea array generi film tramite genere */
       if(this.userSearch !== ''){
         axios
-          .get('https://api.themoviedb.org/3/genre/movie/list', {
-            params: {
-              api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
-              language : 'it_IT' 
-            }
-          })
-          .then((returned)=>{
-            this.movieGenres = returned.data.genres;
-            this.searchGenMovId();
-            this.movieByGenre();
-          });
+        .get('https://api.themoviedb.org/3/genre/movie/list', {
+          params: {
+            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+            language : 'it_IT' 
+          }
+        })
+        .then((returned)=>{
+          this.movieGenres = returned.data.genres;
+          this.searchGenMovId();
+          this.movieByGenre();
+        });
       }
 
     },
     getTvGenre: function(){ /* crea array generi tv tramite genere */
       if(this.userSearch !== ''){
         axios
-          .get('https://api.themoviedb.org/3/genre/tv/list', {
-            params: {
-              api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
-              language : 'it_IT' 
-            }
-          })
-          .then((returned)=>{
-            this.tvGenres = returned.data.genres;
-            this.searchGenTvId();
-            this.tvByGenre();
-          });
+        .get('https://api.themoviedb.org/3/genre/tv/list', {
+          params: {
+            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+            language : 'it_IT' 
+          }
+        })
+        .then((returned)=>{
+          this.tvGenres = returned.data.genres;
+          this.searchGenTvId();
+          this.tvByGenre();
+        });
       }
 
     },  
