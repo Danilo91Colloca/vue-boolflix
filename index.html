@@ -39,6 +39,11 @@
           <!-- /right head -->
         </div>
         <!-- /HEADER -->
+        <!-- jumbotron -->
+        <div class="jumbotron">
+
+        </div>
+        <!-- /jumbotron -->
         <!-- MAIN -->
         <div class="searchResult-box flex">
           <!-- container search result -->
@@ -97,7 +102,7 @@
             <!-- film/tv without img -->
             <div class="img-preview">
               <div v-if="data.poster_path">
-                <img :src="'http://image.tmdb.org/t/p/w200/'+data.poster_path" alt="">
+                <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
               </div>
               <div v-else>
                 <div class="no-img">

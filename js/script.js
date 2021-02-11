@@ -120,8 +120,8 @@ new Vue ({
         return this.idCodeMov = id
       })
     }, 
-    movieByGenre: function(){
-      this.movieList = this.movieList.filter((element)=>{
+    movieByGenre: function(){ //filtra movieList inserendo film che includono idCodeMov
+      this.movieList = this.movieList.filter((element)=>{ 
         return element.genre_ids.includes(this.idCodeMov)               
       })
     }, 
@@ -136,7 +136,7 @@ new Vue ({
         return this.idCodeTv = id
       })
     }, 
-    tvByGenre: function(){
+    tvByGenre: function(){ //filtra tvList inserendo film che includono idCodeTv
       this.tvList = this.tvList.filter((element)=>{
         return element.genre_ids.includes(this.idCodeTv)               
       })
