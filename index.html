@@ -21,9 +21,17 @@
         <!-- HEADER -->
         <div class="header-section flex">
           <!-- left header -->
-          <div class="header-nav left">
+          <div class="header-nav flex left">
             <div class="logo-head">
               <img src="img/logo/bool.png" alt="">
+            </div>
+            <div class="select-box">
+              <ul class="select-option flex" name="" id="">
+                <li @click="resetSearch()">HOME</li>
+                <li>Movie</li>
+                <li>Tv Series</li>
+              </ul>
+
             </div>
           </div>
           <!-- /left header -->
@@ -44,7 +52,22 @@
         </div>
         <!-- /HEADER -->
         <!-- jumbotron -->
-        <div class="jumbotron">
+        <div class="jumbotron" v-if="userSearch === ''">
+          <div class="jumbo-label">
+            <div class="jumbo-title">
+              <h1>AVATAR</h1>
+              <span>2</span>
+            </div>    
+            <p>
+              L' INIZIO DI UN' EPICA 
+              <br>
+              CHE SI SVILUPPA NEL TEMPO E NELLO SPAZIO
+              <br>
+              PER ESPLORARE ALTRE ZONE DEL MONDO DI PANDORA
+            </p>
+            
+
+          </div>
 
         </div>
         <!-- /jumbotron -->
@@ -271,7 +294,7 @@
               </li>
             </ul>
             <!-- /info card film -->  
-            <!-- film/tv without img -->
+            <!-- film/tv with/without img -->
             <div class="img-preview">
               <div v-if="data.poster_path">
                 <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
@@ -289,7 +312,7 @@
                 </div>
               </div>
             </div>  
-            <!-- / film-tv without img -->            
+            <!-- / film-tv with/without img -->            
           </div>
           <!-- /container search result -->
         </div>
