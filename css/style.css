@@ -76,7 +76,6 @@ ul {
 .vote > i {
   color: #ffd700;
 }
-
 .img-preview {
   width: 200px;
   height: 305px;
@@ -89,10 +88,12 @@ ul {
   width: 200px;
   height: 300px;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   background-color: #000;
   color: #fff;
-  padding: 0px 5px;
+  padding: 10px 5px;
   margin-bottom: 5px;
+  text-align: center;
+}
+.logo-cards {
+  margin-bottom: 20px;;
 }
