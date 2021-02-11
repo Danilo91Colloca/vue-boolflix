@@ -33,7 +33,7 @@
               <div class="search-button">
                 <i class="fas fa-search"></i>
               </div>
-              <input type="text" v-model="userSearch" @keyup="isSearchFilm()" placeholder="titoli, persone, generi">
+              <input type="text" v-model="userSearch" @keyup="search()" placeholder="titoli, persone, generi">
             </div>
           </div>
           <!-- /right head -->
@@ -42,7 +42,7 @@
         <!-- MAIN -->
         <div class="searchResult-box flex">
           <!-- container search result -->
-          <div class="searchResult-container flex" v-for="(data, index) in searchList">
+          <div class="searchResult-container flex" v-for="(data, index) in allSearchList">
             <!-- info card film -->
             <ul class="film-tab">
               <li class="title">
