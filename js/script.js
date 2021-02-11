@@ -12,6 +12,7 @@ new Vue ({
       this.allSearchList = [];
       this.searchFilm();
       this.searchTv();
+      this.searchPerson();
     },
     searchFilm : function(){     /*ricerca dinamica del titolo e ritorna films*/
       if(this.userSearch !== '') {
@@ -30,7 +31,8 @@ new Vue ({
       }    
     },
     searchTv: function() {
-      axios /*chiamata xhr per la sezione TV*/ 
+      if(this.userSearch !== ''){
+        axios /*chiamata xhr per la sezione TV*/ 
         .get('https://api.themoviedb.org/3/search/tv', {
           params: {
             api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
@@ -41,6 +43,23 @@ new Vue ({
           this.tvList = returned.data.results;      
           this.allSearchList = [...this.allSearchList, ...this.tvList]
         }); 
+      }
+    },
+    searchPerson: function(){
+      if(this.userSearch !== '') {
+        axios /* chiamata xhr per la sezione FILM */
+        .get('https://api.themoviedb.org/3/search/person', {
+            params: {
+            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+            query : this.userSearch,
+            language : 'it_IT' 
+          }
+        })
+        .then((returned)=>{
+          let person = returned.data.results;
+          this.resultByPerson(person)
+        });        
+      } 
 
     },      
     starsVote : function(nVote){ /*ritorna il voto medio in intero e alla sua metà*/
@@ -51,6 +70,12 @@ new Vue ({
         return title
       }    
       return name
+    },
+    resultByPerson : function(arrayObj){
+      arrayObj.forEach(element => {
+        this.allSearchList = [...this.allSearchList, ...element.known_for]
+      });
+
     }  
     
   }
