@@ -6,7 +6,7 @@ new Vue ({
     langList : ['de', 'en', 'fr', 'it', 'pt', 'us', 'zh']
   },
   methods : {
-    isSearchFilm : function(){             /*ricerca dinamica del titolo*/
+    isSearchFilm : function(){     /*ricerca dinamica del titolo e ritorna sia tv che films*/
       if(this.userSearch !== '') {
         axios /* chiamata xhr per la sezione FILM */
         .get('https://api.themoviedb.org/3/search/movie', {
@@ -17,19 +17,21 @@ new Vue ({
           }
         })
         .then((returned)=>{
-          this.searchList = returned.data.results      
+          let film = returned.data.results  
+          axios /*chiamata xhr per la sezione TV*/ 
+          .get('https://api.themoviedb.org/3/search/tv', {
+            params: {
+              api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+              query : this.userSearch 
+            }
+          })
+          .then((returned)=>{
+            let tv = returned.data.results      
+            this.searchList = [...film, ...tv]
+          });    
         });
   
-        axios /*chiamata xhr per la sezione TV*/ 
-        .get('https://api.themoviedb.org/3/search/tv', {
-          params: {
-            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
-            query : this.userSearch 
-          }
-        })
-        .then((returned)=>{
-          this.searchList = returned.data.results      
-        });
+        
       }    
     },      
     starsVote : function(nVote){ /*ritorna il voto medio in intero e alla sua metà*/
