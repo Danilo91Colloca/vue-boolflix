@@ -25,10 +25,12 @@ ul {
 .searchResult-box {
   padding: 10px 5px;
   flex-wrap: wrap;
+  overflow: auto;
 }
 
 /*>>>>>>>>>>>>>>>>>>>>>>> STYLE SECTION <<<<<<<<<<<<<<<<<<<<<*/
-.logo-head > img {
+.logo-head > img,
+.logo-cards > img {
   vertical-align: middle;
   width: 150px;
 }
@@ -60,7 +62,7 @@ ul {
   display: block;
   border-radius: 8px;
 }
-.data-name {
+.keyName {
   font-weight: bolder;
   font-size: 15px;
 }
@@ -88,6 +90,7 @@ ul {
   height: 300px;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   background-color: #000;
   color: #fff;
   padding: 0px 5px;

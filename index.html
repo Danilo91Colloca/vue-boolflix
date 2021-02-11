@@ -18,122 +18,105 @@
     <div id="app">
         <!-- PAGE WRAPPER -->
       <div class="page-wrapper">
-          <!-- HEADER -->
-          <div class="header-section flex">
-            <!-- left header -->
-            <div class="header-nav left">
-              <div class="logo-head">
-                <img src="img/logo/bool.png" alt="">
-              </div>
+        <!-- HEADER -->
+        <div class="header-section flex">
+          <!-- left header -->
+          <div class="header-nav left">
+            <div class="logo-head">
+              <img src="img/logo/bool.png" alt="">
             </div>
-            <!-- /left header -->
-            <!-- right head -->
-            <div class="header-nav right">
-              <div class="searchBar-box flex">
-                <div class="search-button">
-                  <i class="fas fa-search"></i>
-                </div>
-                <input type="text" v-model="userSearch" @keyup="isSearchFilm()" placeholder="titoli, persone, generi">
-               
-              </div>
-            </div>
-            <!-- /right head -->
           </div>
-            <!-- /HEADER -->
-            <!-- MAIN -->
-        <div class="searchResult-box flex">
-          <div class="searchResult-container flex" v-for="(data, index) in searchList">
-            <div class="film-tab">
-              <ul>
-                <li class="title">
-                  <div v-if="data.title">
-                    <span class="data-name">
-                      Title:
-                     </span>
-                     <span class="data-imported">
-                      {{data.title}}
-                     </span> 
-                  </div>
-                  <div v-else>
-                    <span class="data-name">
-                      Title:
-                    </span>
-                    <span class="data-imported">
-                      {{data.name}}
-                    </span>
-                  </div>
-                </li>
-                <li class="original-title">
-                  <div v-if="data.original_title">
-                    <span class="data-name">
-                      Original Title:
-                    </span>
-                    <span class="data-imported">
-                      {{data.original_title}}
-                    </span> 
-                  </div>
-                  <div v-else>
-                    <span class="data-name">
-                      Original Title:
-                    </span>
-                    <span class="data-imported">
-                      {{data.original_name}}
-                    </span>
-                  </div>
-                </li>
-                <li class="language">
-                  <span class="data-name">Original Language:</span> 
-                  <span class="data-imported-img" v-if="langList.includes(data.original_language)">
-                    <img :src="'img/flags/' + data.original_language + '.png' " >
-                  </span>
-                  <span class="data-imported" v-else>
-                    {{data.original_language}}
-                  </span>
-                </li>
-                <li class="vote flex" >
-                  <span class="data-name">
-                    Vote:
-                  </span>
-                  <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
-                  <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
-                </li>
-                <li class="overview-box">
-                  <div class="overview-content">
-                    <span class="data-name">
-                      Overview:
-                    </span>
-                    <span class="data-imported">
-                      {{data.overview}}
-                    </span>
-                    
-                  </div>
-                </li>
-              </ul>
-  
-
+          <!-- /left header -->
+          <!-- right head -->
+          <div class="header-nav right">
+            <div class="searchBar-box flex">
+              <div class="search-button">
+                <i class="fas fa-search"></i>
+              </div>
+              <input type="text" v-model="userSearch" @keyup="isSearchFilm()" placeholder="titoli, persone, generi">
             </div>
+          </div>
+          <!-- /right head -->
+        </div>
+        <!-- /HEADER -->
+        <!-- MAIN -->
+        <div class="searchResult-box flex">
+          <!-- container search result -->
+          <div class="searchResult-container flex" v-for="(data, index) in searchList">
+            <!-- info card film -->
+            <ul class="film-tab">
+              <li class="title">
+                <div >
+                  <span class="keyName">
+                    Title:
+                    </span>
+                    <span class="data-imported">
+                    {{isFilmTvParam(data.title, data.name)}}
+                    </span> 
+                </div>
+              </li>
+              <li class="original-title">
+                <div>
+                  <span class="keyName">
+                    Original Title:
+                  </span>
+                  <span class="data-imported">
+                    {{isFilmTvParam(data.original_title, data.original_name)}}
+                  </span> 
+                </div>
+              </li>
+              <li class="language">
+                <span class="keyName">Original Language:</span> 
+                <span class="data-imported-img" 
+                  v-if="langList.includes(data.original_language)">
+                   <img :src="'img/flags/' + data.original_language + '.png' " >
+                </span>
+                <span class="data-imported" v-else>
+                  {{data.original_language}}
+                </span>
+              </li>
+              <li class="vote flex" >
+                <span class="keyName">
+                  Vote:
+                </span>
+                <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
+                <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
+              </li>
+              <li class="overview-box">
+                <div class="overview-content">
+                  <span class="keyName">
+                    Overview:
+                  </span>
+                  <span class="data-imported">
+                    {{data.overview}}
+                  </span>
+                </div>
+              </li>
+            </ul>
+            <!-- /info card film -->  
+            <!-- film/tv without img -->
             <div class="img-preview">
               <div v-if="data.poster_path">
                 <img :src="'http://image.tmdb.org/t/p/w200/'+data.poster_path" alt="">
               </div>
               <div v-else>
                 <div class="no-img flex">
-                  <div v-if="data.title">
-                      <span class="data-imported">
-                      {{data.title}}
-                      </span> 
+                  <div class="logo-cards">
+                    <img src="img/logo/bool.png" alt="">
                   </div>
-                  <div v-else>
+                  <div class="keyName">
                     <span class="data-imported">
-                      {{data.name}}
-                    </span>
+                    {{isFilmTvParam(data.title, data.name)}}
+                    </span> 
                   </div>
                 </div>
               </div>
             </div>  
-
+            <!-- / film-tv without img -->            
           </div>
+          <!-- /container search result -->
         </div>
+        <!-- / MAIN -->
       </div>
       <!-- /PAGE WRAPPER -->
     </div>
