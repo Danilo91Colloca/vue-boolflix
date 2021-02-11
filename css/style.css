@@ -24,6 +24,7 @@ ul {
   position: fixed;
   z-index: 100;
 }
+
 .jumbotron {
   width: 100vw;
   max-width: 100%;
@@ -92,7 +93,9 @@ ul {
   transition-duration: 2s;
 }
 
-.searchResult-container:hover .film-tab {
+.searchResult-container:hover .film-tab,
+.movie-row:hover .film-tab,
+.tv-row:hover .film-tab {
   display: block;
 }
 .keyName {
@@ -102,6 +105,7 @@ ul {
 .data-imported {
   font-size: 14px;
 }
+
 .data-imported-img > img {
   width: 18px;
   vertical-align: middle;
@@ -113,7 +117,9 @@ ul {
   width: 342px;
   height: 513px;
   margin-right: 10px;
-  
+}
+.img-preview img {
+  border-radius: 8px;
 }
 .searchResult-container {
   padding: 5px 5px;
