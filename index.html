@@ -46,7 +46,7 @@
                       GENERI
                     </li>
                     <li v-for="genre in movieGenres" class="generi">
-                      <span @click="selectByGenre(genre.name)">{{genre.name}}</span>
+                      <span @click="selectByGenre(genre.name, 1)">{{genre.name}}</span>
                     </li>
                   </ul>
                   </div>
@@ -63,7 +63,7 @@
                         GENERI
                       </li>
                       <li v-for="(genre, index) in tvGenres" class="generi" >
-                        <span @click="selectByGenre(genre.name)">{{genre.name}}</span>
+                        <span @click="selectByGenre(genre.name, 2)">{{genre.name}}</span>
                       </li>
                     </ul>
                   </div>

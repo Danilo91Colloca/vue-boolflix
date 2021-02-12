@@ -233,9 +233,68 @@ new Vue ({
       }
       return result
     },
-    selectByGenre : function (gen) {
-      this.userSearch = gen;
-      this.search();
+    selectByGenre : function (gen, nMenu) { //mostra a schermo solo i generi scelti in movie o tv 
+      if(nMenu === 1){ //avvia la chiamata se parte dal menu MOVIE
+        let genName = this.capitalize(gen);
+        console.log(genName)
+        this.searchFilm(this.randomLetter())
+        let id;
+        this.movieGenres.forEach((element) =>{
+        if(element.name.includes(genName)){
+          id = "";
+          id = element.id
+        }
+          console.log(id)
+          // return this.idCodeMov = id
+        })
+        this.userSearch=gen
+        axios /* chiamata xhr per la sezione FILM */
+        .get('https://api.themoviedb.org/3/search/movie', {
+            params: {
+            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+            query : this.randomLetter(), //query random
+            language : 'it_IT' 
+          }
+        })
+        .then((returned)=>{ //ritorna solo i film che contengono idCodeMov
+          this.movieList = returned.data.results;
+          console.log(this.movieList)
+          this.movieList = this.movieList.filter((element)=>{ 
+            return element.genre_ids.includes(id)
+          })       
+          this.allSearchList = this.movieList 
+        });
+      }
+      if(nMenu === 2){ //avvia la chiamata se parte dal menu TV
+        let genName = this.capitalize(gen);
+        console.log(genName)
+        this.searchFilm(this.randomLetter())
+        let id;
+        this.tvGenres.forEach((element) =>{
+        if(element.name.includes(genName)){
+          id = "";
+          id = element.id
+        }
+          console.log(id)
+          // return this.idCodeMov = id
+        })
+        this.userSearch=gen
+        axios /*chiamata xhr per la sezione TV*/ 
+        .get('https://api.themoviedb.org/3/search/tv', {
+          params: {
+            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+            query : this.randomLetter(), //query random
+          }
+        })
+        .then((returned)=>{
+          this.tvList = returned.data.results;
+          console.log(this.tvList)
+          this.tvList = this.tvList.filter((element)=>{ 
+            return element.genre_ids.includes(id)
+          })       
+          this.allSearchList = this.tvList
+        });      
+      }     
     },
     menuVisible : function(idx){ //cambia i data nell'oggetto activeMenu
       this.activeMenu.index = idx;
