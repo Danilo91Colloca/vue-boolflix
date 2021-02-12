@@ -51,16 +51,15 @@ new Vue ({
     },
     search : function(){
       this.allSearchList = []; //azzera lista ricerca
-      // this.searchFilm(); //richiesta movie
-      // this.searchTv(); //richiesta tv
-      this.searchPerson(); //richiesta persone
-      
-      // this.searchGenMovId();
-      // this.movieByGenre();
-
-      // this.searchGenTvId();
-      // this.tvByGenre();
-
+      this.searchGenMovId();
+      this.movieByGenre();
+      this.searchGenTvId();
+      this.tvByGenre();
+      if(this.userSearch !== ''){ //per non generare error 422
+        this.searchPerson(); //richiesta persone
+        this.searchFilm(); //richiesta movie
+        this.searchTv(); //richiesta tv
+      }  
       if(this.userSearch ===''){
         this.defaultView();
       }
