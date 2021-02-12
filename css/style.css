@@ -109,18 +109,20 @@ ul {
   color: #fff;
   cursor: pointer;
 }
-.search-button.delete {
-  margin-left: 10px;
-}
-.searchBar-box>input{
+
+.searchInput{
   outline: none;
   border: none;
   margin-left: 15px;
   width: 200px;
-  background-color: #000;
+  background-color: transparent;
   padding: 0px 5px;
   color: #fff;
 }
+.search-button.delete {
+  margin-left: 10px;
+}
+
 /*+++++++++++++++main+++++++++*/
 /*default view*/
 .movieRow-box,

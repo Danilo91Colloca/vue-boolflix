@@ -80,7 +80,7 @@
               <div class="search-button">
                 <i class="fas fa-search"></i>
               </div>
-              <input type="text" v-model="userSearch" @keyup="search()" placeholder="titoli, persone, generi">
+              <input class="searchInput" type="text" v-model="userSearch" @keyup="search()" placeholder="titoli, persone, generi">
               <div class="search-button delete" @click="resetSearch()" >
                 <i class="fas fa-times"></i>
               </div>
@@ -116,7 +116,7 @@
           <div class="movieRow-box" v-if="userSearch === '' ">
             <div class="sectionDefault-title">
               <span>
-                BEST MOVIE 
+                MOVIE POPULAR SELECTION 
               </span>
             </div>
             <div class="movie-section flex" >
@@ -200,7 +200,7 @@
           <div class="tvRow-box" v-if="userSearch === '' ">
             <div class="sectionDefault-title">
               <span>
-                BEST TV SERIES & SHOW 
+               TV SERIES & SHOW POPULAR SELECTION 
               </span>
             </div>
             <div class="tv-section flex">

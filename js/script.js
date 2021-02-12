@@ -31,11 +31,11 @@ new Vue ({
     },
     defaultCall: function(){  //chiamata di default all API
       axios /* chiamata xhr per la sezione FILM */
-      .get('https://api.themoviedb.org/3/search/movie', {
+      .get('https://api.themoviedb.org/3/movie/popular', {
           params: {
-          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
-          query : this.randomLetter(), //query random
-          language : 'it_IT' 
+          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146'
+          // query : this.randomLetter(), //query random
+          // language : 'it_IT' 
         }
       })
       .then((returned)=>{
@@ -43,7 +43,7 @@ new Vue ({
         this.allSearchList = [...this.allSearchList, ...this.movieList]  
       });        
       axios /*chiamata xhr per la sezione TV*/ 
-      .get('https://api.themoviedb.org/3/search/tv', {
+      .get('https://api.themoviedb.org/3/tv/popular', {
         params: {
           api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
           query : this.randomLetter() //query random 
@@ -304,8 +304,7 @@ new Vue ({
     },
     isMenuVisible : function(idx){ //funzione di verifica condizioni v-if per i menu
       return this.activeMenu.index === idx && this.activeMenu.show;
-    }
-    
+    } 
         
   }
 })
