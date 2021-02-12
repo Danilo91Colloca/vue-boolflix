@@ -56,20 +56,20 @@ new Vue ({
       this.searchGenTvId();
       this.tvByGenre();
       if(this.userSearch !== ''){ //per non generare error 422
-        this.searchPerson(); //richiesta persone
-        this.searchFilm(); //richiesta movie
-        this.searchTv(); //richiesta tv
+        this.searchFilm(this.userSearch); //richiesta movie
+        this.searchTv(this.userSearch); //richiesta tv
+        this.searchPerson(this.userSearch); //richiesta persone
       }  
       if(this.userSearch ===''){
         this.defaultCall();
       }
     },
-    searchFilm : function(){     /*ricerca dinamica del titolo e ritorna films*/
+    searchFilm : function(userType){    /*ricerca dinamica del titolo e ritorna films*/
       axios /* chiamata xhr per la sezione FILM */
       .get('https://api.themoviedb.org/3/search/movie', {
           params: {
           api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
-          query : this.userSearch,
+          query : userType,
           language : 'it_IT' 
         }
       })
@@ -78,12 +78,12 @@ new Vue ({
         this.allSearchList = [...this.allSearchList, ...this.movieList]  
       });        
     },
-    searchTv: function() {
+    searchTv: function(userType) {
       axios /*chiamata xhr per la sezione TV*/ 
       .get('https://api.themoviedb.org/3/search/tv', {
         params: {
           api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
-          query : this.userSearch 
+          query : userType
         }
       })
       .then((returned)=>{
@@ -92,18 +92,18 @@ new Vue ({
       }); 
 
     },
-    searchPerson: function(){ /*ricerca tramite nome di attore/regista*/ 
+    searchPerson: function(userType){ /*ricerca tramite nome di attore/regista*/ 
       axios /* chiamata xhr per person */
       .get('https://api.themoviedb.org/3/search/person', {
           params: {
           api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
-          query : this.userSearch,
+          query : userType,
           language : 'it_IT' 
         }
       })
       .then((returned)=>{
         let person = returned.data.results;
-        this.filterByPerson(person)
+        this.filterByPerson(person) 
       });        
 
     }, 
@@ -169,6 +169,10 @@ new Vue ({
       }); 
       
     }, 
+    movieBySelectGenre: function(){ //filtra movieList inserendo film che includono idCodeMov
+      // this.searchGenMovId();
+      this.movieByGenre();
+    }, 
     searchGenTvId: function() { //trasforma il nome genere inserito dall'utente in cod id
       let genName= this.capitalize(this.userSearch);
       let id;
@@ -195,7 +199,11 @@ new Vue ({
         })     
         this.allSearchList = [...this.allSearchList, ...this.tvList]
       });     
-    },  
+    }, 
+    getActor: function(){//TODO!!!!
+      axios
+      .get('')
+    }, 
     starsVote : function(nVote){ /*ritorna il voto medio in intero e alla sua metà*/
       return parseInt(nVote / 2)
     },
@@ -219,7 +227,12 @@ new Vue ({
         result = alfabeto.charAt(Math.floor(Math.random() * alfabeto.length))
       }
       return result
-    }
+    },
+    selectByGenre : function (gen) {
+      this.userSearch = gen;
+      this.search();
+    },
+    
         
   }
 })

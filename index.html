@@ -35,20 +35,36 @@
                 <li @click="resetSearch()">
                   HOME
                 </li>
-                <li>
-                 <span> Movie</span>
-                 <div class="select-box">
-                  <select name="" v-model="userSearch" @keyup="search" >
-                    <option disabled value="">
+                <li >
+                 <span> 
+                   Movie
+                  </span>
+                 <div class="select-box movie" >
+                  <ul>
+                    <li>
                       GENERI
-                    </option>
-                    <option  v-for="genre in movieGenres" :value="genre.name" @clcik="movieByGenre()">
-                      {{genre.name}}
-                    </option>
-                  </select>
+                    </li>
+                    <li v-for="genre in movieGenres" class="generi">
+                      <span @click="selectByGenre(genre.name)">{{genre.name}}</span>
+                    </li>
+                  </ul>
                 </div>
                 </li>
-                <li>Tv Series</li>
+                <li>
+                  <span>
+                    Tv Series
+                  </span>
+                  <div class="select-box tv" >
+                    <ul>
+                      <li>
+                        GENERI
+                      </li>
+                      <li v-for="genre in tvGenres" class="generi">
+                        <span @click="selectByGenre(genre.name)">{{genre.name}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
