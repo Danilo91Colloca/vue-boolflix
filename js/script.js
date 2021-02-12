@@ -14,7 +14,7 @@ new Vue ({
     langList : ['de', 'en', 'fr', 'it', 'pt', 'us', 'zh']
   },
   mounted () {
-    this.defaultView(); 
+    this.defaultCall(); 
     this.getMovieGenre(); //richiesta generi dei movies
     this.getTvGenre(); //richiesta generi tv
  
@@ -24,7 +24,7 @@ new Vue ({
       this.userSearch = '';
       this.defaultView();
     },
-    defaultView: function(){  
+    defaultCall: function(){  
       axios /* chiamata xhr per la sezione FILM */
       .get('https://api.themoviedb.org/3/search/movie', {
           params: {
@@ -61,7 +61,7 @@ new Vue ({
         this.searchTv(); //richiesta tv
       }  
       if(this.userSearch ===''){
-        this.defaultView();
+        this.defaultCall();
       }
     },
     searchFilm : function(){     /*ricerca dinamica del titolo e ritorna films*/
@@ -212,10 +212,10 @@ new Vue ({
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
     },
-    randomLetter: function(){ //prende 2 lettere random dall'alfabeto
+    randomLetter: function(){ //prende 1 lettera random dall'alfabeto
       let result = '';
       let alfabeto = 'abcdefghijklmnopqrstuvwxyz';
-      for(let i=0; i<=2; i++){
+      for(let i=0; i<=1; i++){
         result = alfabeto.charAt(Math.floor(Math.random() * alfabeto.length))
       }
       return result
