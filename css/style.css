@@ -134,7 +134,7 @@ ul {
 /*search view*/
 .film-tab {
   width: 342px;
-  height: 513px;
+  height: 100%;
   padding: 10px;
   overflow: auto;
   background-color: rgba(000, 000, 000, 0.7);
