@@ -32,12 +32,16 @@
             </div>
             <div class="navMenu-box">
               <ul class="navMenu-option flex" name="" id="">
-                <li @click="resetSearch()">HOME</li>
+                <li @click="resetSearch()">
+                  HOME
+                </li>
                 <li>
                  <span> Movie</span>
                  <div class="select-box">
                   <select name="" v-model="userSearch" @keyup="search" >
-                    <option >GENERI</option>
+                    <option disabled value="">
+                      GENERI
+                    </option>
                     <option  v-for="genre in movieGenres" :value="genre.name" @clcik="movieByGenre()">
                       {{genre.name}}
                     </option>
@@ -92,7 +96,7 @@
           <div class="movieRow-box" v-if="userSearch === '' ">
             <div class="sectionDefault-title">
               <span>
-                SELECTED MOVIE
+                BEST MOVIE 
               </span>
             </div>
             <div class="movie-section flex" >
@@ -176,7 +180,7 @@
           <div class="tvRow-box" v-if="userSearch === '' ">
             <div class="sectionDefault-title">
               <span>
-                SELECTED TV SERIES & SHOW 
+                BEST TV SERIES & SHOW 
               </span>
             </div>
             <div class="tv-section flex">
