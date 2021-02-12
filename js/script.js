@@ -11,7 +11,12 @@ new Vue ({
     idCodeMov:'',
     idCodeTv: '',
 
-    langList : ['de', 'en', 'fr', 'it', 'pt', 'us', 'zh']
+    langList : ['de', 'en', 'fr', 'it', 'pt', 'us', 'zh'],
+
+    activeMenu: { //per far comparire e nascondere il menu
+      index: false,
+      show: false
+    }
   },
   mounted () {
     this.defaultCall(); 
@@ -232,6 +237,15 @@ new Vue ({
       this.userSearch = gen;
       this.search();
     },
+    menuVisible : function(idx){ //cambia i data nell'oggetto activeMenu
+      this.activeMenu.index = idx;
+      this.activeMenu.show = !this.activeMenu.show;
+      // console.log(this.activeMenu.index)
+      // console.log(this.activeMenu.show)
+    },
+    isMenuVisible : function(idx){ //funzione di verifica condizioni v-if per i menu
+      return this.activeMenu.index === idx && this.activeMenu.show;
+    }
     
         
   }

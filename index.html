@@ -35,11 +35,12 @@
                 <li @click="resetSearch()">
                   HOME
                 </li>
-                <li >
-                 <span> 
-                   Movie
+                <li class="movieMenu" @click="menuVisible(1)">
+                  <span> 
+                    Movie
                   </span>
-                 <div class="select-box movie" >
+                  <!-- menu delle select MOV-->
+                  <div class="select-box movie" v-if="isMenuVisible(1)" >
                   <ul>
                     <li>
                       GENERI
@@ -48,22 +49,26 @@
                       <span @click="selectByGenre(genre.name)">{{genre.name}}</span>
                     </li>
                   </ul>
-                </div>
+                  </div>
+                  <!-- /menu delle select MOV-->
                 </li>
-                <li>
+                <li class="tvMenu" @click="menuVisible(2)">
                   <span>
                     Tv Series
                   </span>
-                  <div class="select-box tv" >
+                  <!-- menu delle select TV-->
+                  <div class="select-box tv" v-if="isMenuVisible(2)">
                     <ul>
                       <li>
                         GENERI
                       </li>
-                      <li v-for="genre in tvGenres" class="generi">
+                      <li v-for="(genre, index) in tvGenres" class="generi" >
                         <span @click="selectByGenre(genre.name)">{{genre.name}}</span>
                       </li>
                     </ul>
                   </div>
+                   <!-- /menu delle select TV -->
+
                 </li>
               </ul>
             </div>

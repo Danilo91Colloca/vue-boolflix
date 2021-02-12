@@ -32,15 +32,19 @@ ul {
   position: absolute;
   width: 450px;
   padding: 0px 15px;
-  border: 1px solid red;
   background-color: black;
   top: 100%; 
 }
 
 .select-box ul>li.generi {
+  color: lightslategray;
   line-height: 30px;
   display: inline-block;
   width: calc((100% / 12) * 4);
+}
+.select-box ul>li.generi:hover {
+  color: #fff;
+ text-decoration: underline;
 }
 .jumbotron {
   width: 100vw;
@@ -180,6 +184,7 @@ ul {
   margin-right: 10px;
 }
 .img-preview > img {
+  max-height: 513px;
   border-radius: 8px;
 }
 .searchResult-container {
