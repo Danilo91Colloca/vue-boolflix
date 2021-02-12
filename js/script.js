@@ -20,11 +20,11 @@ new Vue ({
  
   },
   methods : {
-    resetSearch: function(){
+    resetSearch: function(){ //resetta la ricerca e ritorna al default
       this.userSearch = '';
-      this.defaultView();
+      this.defaultCall();
     },
-    defaultCall: function(){  
+    defaultCall: function(){  //chiamata di default all API
       axios /* chiamata xhr per la sezione FILM */
       .get('https://api.themoviedb.org/3/search/movie', {
           params: {
@@ -49,7 +49,7 @@ new Vue ({
         this.allSearchList = [...this.allSearchList, ...this.tvList]
       }); 
     },
-    search : function(){
+    search : function(){ //avvia tutte le funzioni di ricerca
       this.allSearchList = []; //azzera lista ricerca
       this.searchGenMovId();
       this.movieByGenre();
