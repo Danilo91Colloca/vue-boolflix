@@ -84,8 +84,7 @@
               <br>
               PER ESPLORARE ALTRE ZONE DEL MONDO DI PANDORA
             </p>
-            
-
+          
           </div>
 
         </div>
@@ -100,7 +99,108 @@
               </span>
             </div>
             <div class="movie-section flex" >
-              <div class="movie-row" v-for="(data, index) in movieList"> 
+              <div class="movie-row" v-for="(data, index) in movieList">               
+                  <!-- film/tv without img -->
+                  <div class="img-preview">
+                    <div v-if="data.poster_path">
+                      <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
+                    </div>
+                    <div v-else>
+                      <div class="no-img">
+                        <div class="logo-cards">
+                          <img src="img/logo/bool.png" alt="">
+                        </div>
+                        <div class="keyName">
+                          <span class="data-imported">
+                          {{data.title}}
+                          </span> 
+                        </div>
+                      </div>
+                    </div>
+                    <!-- info card film -->
+                    <ul class="film-tab">
+                      <li class="title">
+                        <div >
+                          <span class="keyName">
+                            Title:
+                            </span>
+                            <span class="data-imported">
+                            {{data.title}}
+                            </span> 
+                        </div>
+                      </li>
+                      <li class="original-title">
+                        <div>
+                          <span class="keyName">
+                            Original Title:
+                          </span>
+                          <span class="data-imported">
+                            {{data.original_title}}
+                          </span> 
+                        </div>
+                      </li>
+                      <li class="language">
+                        <span class="keyName">
+                          Original Language:
+                        </span> 
+                        <span class="data-imported-img" 
+                          v-if="langList.includes(data.original_language)">
+                            <img :src="'img/flags/' + data.original_language + '.png' " >
+                        </span>
+                        <span class="data-imported" v-else>
+                          {{data.original_language}}
+                        </span>
+                      </li>
+                      <li class="vote flex" >
+                        <span class="keyName">
+                          Vote:
+                        </span>
+                        <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
+                        <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
+                      </li>
+                      <li class="overview-box">
+                        <div class="overview-content">
+                          <span class="keyName">
+                            Overview:
+                          </span>
+                          <span class="data-imported">
+                            {{data.overview}}
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
+                    <!-- /info card film -->  
+                  </div>  
+                  <!-- / film-tv without img -->            
+              </div>
+            </div>
+
+          </div>
+          <div class="tvRow-box" v-if="userSearch === '' ">
+            <div class="sectionDefault-title">
+              <span>
+                BEST TV SERIES & SHOW 
+              </span>
+            </div>
+            <div class="tv-section flex">
+              <div class="tv-row" v-for="(data, index) in tvList"> 
+                <!-- film/tv without img -->
+                <div class="img-preview">
+                  <div v-if="data.poster_path">
+                    <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
+                  </div>
+                  <div v-else>
+                    <div class="no-img">
+                      <div class="logo-cards">
+                        <img src="img/logo/bool.png" alt="">
+                      </div>
+                      <div class="keyName">
+                        <span class="data-imported">
+                        {{data.name}}
+                        </span> 
+                      </div>
+                    </div>
+                  </div>
                   <!-- info card film -->
                   <ul class="film-tab">
                     <li class="title">
@@ -109,7 +209,7 @@
                           Title:
                           </span>
                           <span class="data-imported">
-                          {{data.title}}
+                          {{data.name}}
                           </span> 
                       </div>
                     </li>
@@ -119,14 +219,12 @@
                           Original Title:
                         </span>
                         <span class="data-imported">
-                          {{data.original_title}}
+                          {{data.original_name}}
                         </span> 
                       </div>
                     </li>
                     <li class="language">
-                      <span class="keyName">
-                        Original Language:
-                      </span> 
+                      <span class="keyName">Original Language:</span> 
                       <span class="data-imported-img" 
                         v-if="langList.includes(data.original_language)">
                           <img :src="'img/flags/' + data.original_language + '.png' " >
@@ -154,105 +252,6 @@
                     </li>
                   </ul>
                   <!-- /info card film -->  
-                  <!-- film/tv without img -->
-                  <div class="img-preview">
-                    <div v-if="data.poster_path">
-                      <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
-                    </div>
-                    <div v-else>
-                      <div class="no-img">
-                        <div class="logo-cards">
-                          <img src="img/logo/bool.png" alt="">
-                        </div>
-                        <div class="keyName">
-                          <span class="data-imported">
-                          {{data.title}}
-                          </span> 
-                        </div>
-                      </div>
-                    </div>
-                  </div>  
-                  <!-- / film-tv without img -->            
-              </div>
-            </div>
-
-          </div>
-          <div class="tvRow-box" v-if="userSearch === '' ">
-            <div class="sectionDefault-title">
-              <span>
-                BEST TV SERIES & SHOW 
-              </span>
-            </div>
-            <div class="tv-section flex">
-              <div class="tv-row" v-for="(data, index) in tvList"> 
-                <!-- info card film -->
-                <ul class="film-tab">
-                  <li class="title">
-                    <div >
-                      <span class="keyName">
-                        Title:
-                        </span>
-                        <span class="data-imported">
-                        {{data.name}}
-                        </span> 
-                    </div>
-                  </li>
-                  <li class="original-title">
-                    <div>
-                      <span class="keyName">
-                        Original Title:
-                      </span>
-                      <span class="data-imported">
-                        {{data.original_name}}
-                      </span> 
-                    </div>
-                  </li>
-                  <li class="language">
-                    <span class="keyName">Original Language:</span> 
-                    <span class="data-imported-img" 
-                      v-if="langList.includes(data.original_language)">
-                        <img :src="'img/flags/' + data.original_language + '.png' " >
-                    </span>
-                    <span class="data-imported" v-else>
-                      {{data.original_language}}
-                    </span>
-                  </li>
-                  <li class="vote flex" >
-                    <span class="keyName">
-                      Vote:
-                    </span>
-                    <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
-                    <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
-                  </li>
-                  <li class="overview-box">
-                    <div class="overview-content">
-                      <span class="keyName">
-                        Overview:
-                      </span>
-                      <span class="data-imported">
-                        {{data.overview}}
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-                <!-- /info card film -->  
-                <!-- film/tv without img -->
-                <div class="img-preview">
-                  <div v-if="data.poster_path">
-                    <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
-                  </div>
-                  <div v-else>
-                    <div class="no-img">
-                      <div class="logo-cards">
-                        <img src="img/logo/bool.png" alt="">
-                      </div>
-                      <div class="keyName">
-                        <span class="data-imported">
-                        {{data.name}}
-                        </span> 
-                      </div>
-                    </div>
-                  </div>
                 </div>  
                 <!-- / film-tv without img -->            
               </div>
@@ -262,57 +261,7 @@
 
           <!-- container search result -->
           <div class="searchResult-container flex" v-for="(data, index) in allSearchList" v-else>
-            <!-- info card film -->
-            <ul class="film-tab">
-              <li class="title">
-                <div >
-                  <span class="keyName">
-                    Title:
-                    </span>
-                    <span class="data-imported">
-                    {{isFilmTvParam(data.title, data.name)}}
-                    </span> 
-                </div>
-              </li>
-              <li class="original-title">
-                <div>
-                  <span class="keyName">
-                    Original Title:
-                  </span>
-                  <span class="data-imported">
-                    {{isFilmTvParam(data.original_title, data.original_name)}}
-                  </span> 
-                </div>
-              </li>
-              <li class="language">
-                <span class="keyName">Original Language:</span> 
-                <span class="data-imported-img" 
-                  v-if="langList.includes(data.original_language)">
-                   <img :src="'img/flags/' + data.original_language + '.png' " >
-                </span>
-                <span class="data-imported" v-else>
-                  {{data.original_language}}
-                </span>
-              </li>
-              <li class="vote flex" >
-                <span class="keyName">
-                  Vote:
-                </span>
-                <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
-                <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
-              </li>
-              <li class="overview-box">
-                <div class="overview-content">
-                  <span class="keyName">
-                    Overview:
-                  </span>
-                  <span class="data-imported">
-                    {{data.overview}}
-                  </span>
-                </div>
-              </li>
-            </ul>
-            <!-- /info card film -->  
+            
             <!-- film/tv with/without img -->
             <div class="img-preview">
               <div v-if="data.poster_path">
@@ -330,6 +279,57 @@
                   </div>
                 </div>
               </div>
+              <!-- info card film -->
+              <ul class="film-tab">
+                <li class="title">
+                  <div >
+                    <span class="keyName">
+                      Title:
+                      </span>
+                      <span class="data-imported">
+                      {{isFilmTvParam(data.title, data.name)}}
+                      </span> 
+                  </div>
+                </li>
+                <li class="original-title">
+                  <div>
+                    <span class="keyName">
+                      Original Title:
+                    </span>
+                    <span class="data-imported">
+                      {{isFilmTvParam(data.original_title, data.original_name)}}
+                    </span> 
+                  </div>
+                </li>
+                <li class="language">
+                  <span class="keyName">Original Language:</span> 
+                  <span class="data-imported-img" 
+                    v-if="langList.includes(data.original_language)">
+                    <img :src="'img/flags/' + data.original_language + '.png' " >
+                  </span>
+                  <span class="data-imported" v-else>
+                    {{data.original_language}}
+                  </span>
+                </li>
+                <li class="vote flex" >
+                  <span class="keyName">
+                    Vote:
+                  </span>
+                  <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
+                  <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
+                </li>
+                <li class="overview-box">
+                  <div class="overview-content">
+                    <span class="keyName">
+                      Overview:
+                    </span>
+                    <span class="data-imported">
+                      {{data.overview}}
+                    </span>
+                  </div>
+                </li>
+              </ul>
+              <!-- /info card film -->  
             </div>  
             <!-- / film-tv with/without img -->            
           </div>
