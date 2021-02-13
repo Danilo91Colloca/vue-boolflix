@@ -206,11 +206,7 @@ new Vue ({
         })     
         this.allSearchList = [...this.allSearchList, ...this.tvList]
       });     
-    }, 
-    getActor: function(){//TODO!!!!
-      axios
-      .get('')
-    }, 
+    },  
     starsVote : function(nVote){ /*ritorna il voto medio in intero e alla sua metà*/
       return parseInt(nVote / 2)
     },
@@ -306,27 +302,23 @@ new Vue ({
     },
     isMenuVisible : function(idx){ //funzione di verifica condizioni v-if per i menu
       return this.activeMenu.index === idx && this.activeMenu.show;
-    },
-
-
-
-    /*TODOOO */
-    isCast: function(filmID, idx){ //richiede oggetti contenente attori
+    }, 
+    isCast: function(filmID){ //richiede oggetti contenente attori
       console.log(filmID)
       axios
       .get('https://api.themoviedb.org/3/movie/' + filmID + '/credits?api_key=d6a99b8f732b4dd111faf2e38c0dc146')
       .then((response)=>{
         this.actors = response.data.cast
         console.log(this.actors)
-        this.isActor(idx)
+        this.isActor()
       })     
     },
-    isActor: function(i){
-      console.log('<<<<<<<is actor>>>>>>>>')
-      
-      let five = this.actors
-      this.actors = five.slice(0, 4)      
-    }       
+    isActor: function(){      
+      let fiveOfActors = this.actors
+      this.actors = fiveOfActors.slice(0, 4)      
+    }
+    
+    // !TODO: RESTITUIRE I GENERI DEL FILM
   }
 })
 Vue.config.devtools = true;
