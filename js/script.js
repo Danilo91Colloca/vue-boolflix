@@ -17,7 +17,8 @@ new Vue ({
       index: false,
       show: false
     },
-    actors: []
+    actors: [],
+    actorVerify: 0
   },
   mounted () {
     this.defaultCall(); 
@@ -235,7 +236,7 @@ new Vue ({
       return result
     },
     selectByGenre : function (gen, nMenu) { //mostra a schermo solo i generi scelti in movie o tv 
-      if(nMenu === 1){ //avvia la chiamata se parte dal menu MOVIE
+      if(nMenu === 'movie'){ //avvia la chiamata se parte dal menu MOVIE
         let genName = this.capitalize(gen);
         console.log(genName)
         this.searchFilm(this.randomLetter())
@@ -266,7 +267,7 @@ new Vue ({
           this.allSearchList = this.movieList 
         });
       }
-      if(nMenu === 2){ //avvia la chiamata se parte dal menu TV
+      if(nMenu === 'tv'){ //avvia la chiamata se parte dal menu TV
         let genName = this.capitalize(gen);
         console.log(genName)
         this.searchFilm(this.randomLetter())
@@ -310,32 +311,22 @@ new Vue ({
 
 
     /*TODOOO */
-    isCast: function(filmID){ //richiede oggetti contenente attori
+    isCast: function(filmID, idx){ //richiede oggetti contenente attori
       console.log(filmID)
       axios
       .get('https://api.themoviedb.org/3/movie/' + filmID + '/credits?api_key=d6a99b8f732b4dd111faf2e38c0dc146')
       .then((response)=>{
         this.actors = response.data.cast
         console.log(this.actors)
-        this.isActor()
-  
-      })
-      
+        this.isActor(idx)
+      })     
     },
-    isActor: function(){
+    isActor: function(i){
       console.log('<<<<<<<is actor>>>>>>>>')
-     console.log(this.actors)
-     let five = this.actors
-     console.log('<<<<<<<is actor>>>>>>>>')
-     console.log(five[0].name)
-      console.log( five.slice(0, 4))
-      console.log('<<<<<<<is actor>>>>>>>>')
-      this.actors = five.slice(0, 4)
-      console.log(this.actors)
-
-    }
-    
-        
+      
+      let five = this.actors
+      this.actors = five.slice(0, 4)      
+    }       
   }
 })
 Vue.config.devtools = true;

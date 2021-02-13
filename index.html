@@ -35,35 +35,35 @@
                 <li @click="resetSearch()">
                   HOME
                 </li>
-                <li class="movieMenu" @click="menuVisible(1)">
+                <li class="movieMenu" @click="menuVisible('movie')">
                   <span> 
                     Movie
                   </span>
                   <!-- menu delle select MOV-->
-                  <div class="select-box movie" v-if="isMenuVisible(1)" >
+                  <div class="select-box movie" v-if="isMenuVisible('movie')" >
                   <ul>
                     <li>
                       GENERI
                     </li>
                     <li v-for="genre in movieGenres" class="generi">
-                      <span @click="selectByGenre(genre.name, 1)">{{genre.name}}</span>
+                      <span @click="selectByGenre(genre.name, 'movie')">{{genre.name}}</span>
                     </li>
                   </ul>
                   </div>
                   <!-- /menu delle select MOV-->
                 </li>
-                <li class="tvMenu" @click="menuVisible(2)">
+                <li class="tvMenu" @click="menuVisible('tv')">
                   <span>
                     Tv Series
                   </span>
                   <!-- menu delle select TV-->
-                  <div class="select-box tv" v-if="isMenuVisible(2)">
+                  <div class="select-box tv" v-if="isMenuVisible('tv')">
                     <ul>
                       <li>
                         GENERI
                       </li>
                       <li v-for="(genre, index) in tvGenres" class="generi" >
-                        <span @click="selectByGenre(genre.name, 2)">{{genre.name}}</span>
+                        <span @click="selectByGenre(genre.name, 'tv')">{{genre.name}}</span>
                       </li>
                     </ul>
                   </div>
@@ -189,13 +189,27 @@
                         </div>
                       </li>
                       <li class="actors-box">
-                        <div class="actors-content">
-                          <span class="keyName" @click="isCast(data.id)">
-                            Actors:
-                          </span>
-                          <span class="data-imported" v-for="actor in actors">
-                            {{ actor.name }}                      
-                          </span>
+                        <span @click="isCast(data.id, index), menuVisible(index)">OTHER INFORMATION</span>
+                        <div class="oteher-content" v-if="isMenuVisible(index)">
+                          <ul>
+                            <li>
+                              <span class="keyName" >
+                                Actors:
+                              </span>
+                              <span class="data-imported" v-for="actor in actors" >
+                                {{ actor.name }}                      
+                              </span>
+                            </li>
+                            <li>
+                              <span class="keyName" >
+                                Genres:
+                              </span>
+                              <span class="data-imported" >
+                                {{ data.genre_ids }}                      
+                              </span>
+                            </li>
+                          </ul>
+                          
                         </div>
                       </li>
                     </ul>
