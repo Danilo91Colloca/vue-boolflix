@@ -16,7 +16,8 @@ new Vue ({
     activeMenu: { //per far comparire e nascondere il menu
       index: false,
       show: false
-    }
+    },
+    actors: []
   },
   mounted () {
     this.defaultCall(); 
@@ -245,7 +246,7 @@ new Vue ({
           id = element.id
         }
           console.log(id)
-          // return this.idCodeMov = id
+          return this.idCodeMov = id
         })
         this.userSearch=gen
         axios /* chiamata xhr per la sezione FILM */
@@ -276,7 +277,7 @@ new Vue ({
           id = element.id
         }
           console.log(id)
-          // return this.idCodeMov = id
+          return this.idCodeMov = id
         })
         this.userSearch=gen
         axios /*chiamata xhr per la sezione TV*/ 
@@ -304,6 +305,29 @@ new Vue ({
     },
     isMenuVisible : function(idx){ //funzione di verifica condizioni v-if per i menu
       return this.activeMenu.index === idx && this.activeMenu.show;
+    },
+
+
+
+    /*TODOOO */
+    isCast: function(filmID){ //richiede oggetti contenente attori
+      console.log(filmID)
+      axios
+      .get('https://api.themoviedb.org/3/movie/' + filmID + '/credits?api_key=d6a99b8f732b4dd111faf2e38c0dc146')
+      .then((response)=>{
+        this.actors = response.data.cast
+        console.log(this.actors)
+        this.isActor()
+      })
+      
+    },
+    isActor: function(){
+      console.log('<<<<<<<>>>>>>>>')
+     console.log(this.actors)
+     let five = this.actors
+     console.log('<<<<<<<>>>>>>>>')
+     console.log(five[0].name)
+
     } 
         
   }

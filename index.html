@@ -88,8 +88,7 @@
            
           </div>
           <!-- /right head -->
-        </div>
-        
+        </div>        
         <!-- /HEADER -->
         <!-- jumbotron -->
         <div class="jumbotron" v-if="userSearch === ''">
@@ -139,7 +138,7 @@
                       </div>
                     </div>
                     <!-- info card film -->
-                    <ul class="film-tab">
+                    <ul class="film-tab" @click="isCast(data.id)">
                       <li class="title">
                         <div >
                           <span class="keyName">
@@ -186,6 +185,16 @@
                           </span>
                           <span class="data-imported">
                             {{data.overview}}
+                          </span>
+                        </div>
+                      </li>
+                      <li class="actors-box">
+                        <div class="actors-content">
+                          <span class="keyName" >
+                            Actors:
+                          </span>
+                          <span class="data-imported" >
+                            
                           </span>
                         </div>
                       </li>
@@ -346,6 +355,16 @@
                     </span>
                     <span class="data-imported">
                       {{data.overview}}
+                    </span>
+                  </div>
+                </li>
+                <li class="actors-box">
+                  <div class="actors-content">
+                    <span class="keyName">
+                      Actors:
+                    </span>
+                    <span class="data-imported">
+                      
                     </span>
                   </div>
                 </li>
