@@ -318,17 +318,23 @@ new Vue ({
         this.actors = response.data.cast
         console.log(this.actors)
         this.isActor()
+  
       })
       
     },
     isActor: function(){
-      console.log('<<<<<<<>>>>>>>>')
+      console.log('<<<<<<<is actor>>>>>>>>')
      console.log(this.actors)
      let five = this.actors
-     console.log('<<<<<<<>>>>>>>>')
+     console.log('<<<<<<<is actor>>>>>>>>')
      console.log(five[0].name)
+      console.log( five.slice(0, 4))
+      console.log('<<<<<<<is actor>>>>>>>>')
+      this.actors = five.slice(0, 4)
+      console.log(this.actors)
 
-    } 
+    }
+    
         
   }
 })

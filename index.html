@@ -138,7 +138,7 @@
                       </div>
                     </div>
                     <!-- info card film -->
-                    <ul class="film-tab" @click="isCast(data.id)">
+                    <ul class="film-tab" >
                       <li class="title">
                         <div >
                           <span class="keyName">
@@ -190,11 +190,11 @@
                       </li>
                       <li class="actors-box">
                         <div class="actors-content">
-                          <span class="keyName" >
+                          <span class="keyName" @click="isCast(data.id)">
                             Actors:
                           </span>
-                          <span class="data-imported" >
-                            
+                          <span class="data-imported" v-for="actor in actors">
+                            {{ actor.name }}                      
                           </span>
                         </div>
                       </li>
