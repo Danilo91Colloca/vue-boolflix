@@ -18,7 +18,8 @@ new Vue ({
       show: false
     },
     actors: [],
-    actorVerify: 0
+    actorVerify: 0,
+    genreNameCards: []
   },
   mounted () {
     this.defaultCall(); 
@@ -304,21 +305,41 @@ new Vue ({
       return this.activeMenu.index === idx && this.activeMenu.show;
     }, 
     isCast: function(filmID){ //richiede oggetti contenente attori
-      console.log(filmID)
+      // console.log(filmID)
       axios
       .get('https://api.themoviedb.org/3/movie/' + filmID + '/credits?api_key=d6a99b8f732b4dd111faf2e38c0dc146')
       .then((response)=>{
         this.actors = response.data.cast
-        console.log(this.actors)
+        // console.log(this.actors)
         this.isActor()
       })     
     },
     isActor: function(){      
       let fiveOfActors = this.actors
       this.actors = fiveOfActors.slice(0, 4)      
+    },   
+    genreInCards: function(id){ //restituisce i generi dei film nelle cards
+      let allGenre = [...this.movieGenres, ...this.tvGenres];
+      let genName=[];
+      let genIsNotDouble = [];
+
+      allGenre.forEach((element)=>{
+        // console.log(element.id)
+        if(id.includes(element.id)){
+          genName.push(element.name) 
+        }
+      })
+      genName=genName.filter((element, index)=>{
+        return genName.indexOf(element) === index 
+      })
+      console.log(genName)
+      this.genreNameCards=genName
+    },
+    areOtherInformation: function(id, index, ids, genreOfEntertainement) {
+      this.isCast(id, index);
+      this.menuVisible(index);  
+      this.genreInCards(ids);
     }
-    
-    // !TODO: RESTITUIRE I GENERI DEL FILM
   }
 })
 Vue.config.devtools = true;

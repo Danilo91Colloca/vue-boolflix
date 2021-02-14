@@ -61,7 +61,9 @@ ul {
   padding-top: 200px;
   width: 40%;
   height: 100%;
-  background-image: linear-gradient(to right, rgba(000, 000, 000, 0.8), rgba(000,000,000, 0.6),rgba(000,000,000, 0));
+  background-image: linear-gradient(
+    to right, rgba(000, 000, 000, 0.8), rgba(000,000,000, 0.6),rgba(000,000,000, 0)
+    );
 }
 .jumbo-title {
   margin-bottom: 120px;

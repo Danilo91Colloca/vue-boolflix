@@ -63,7 +63,9 @@
                         GENERI
                       </li>
                       <li v-for="(genre, index) in tvGenres" class="generi" >
-                        <span @click="selectByGenre(genre.name, 'tv')">{{genre.name}}</span>
+                        <span @click="selectByGenre(genre.name, 'tv')">
+                          {{genre.name}}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -103,15 +105,14 @@
               CHE SI SVILUPPA NEL TEMPO E NELLO SPAZIO
               <br>
               PER ESPLORARE ALTRE ZONE DEL MONDO DI PANDORA
-            </p>
-          
+            </p>        
           </div>
-
         </div>
         <!-- /jumbotron -->
         <!-- MAIN -->
         <div class="searchResult-box flex">
           <!-- DEFAULT VIEW  -->
+          <!-- film default section -->
           <div class="movieRow-box" v-if="userSearch === '' ">
             <div class="sectionDefault-title">
               <span>
@@ -119,107 +120,107 @@
               </span>
             </div>
             <div class="movie-section flex" >
-              <div class="movie-row" v-for="(data, index) in movieList">               
-                  <!-- film/tv without img -->
-                  <div class="img-preview">
-                    <div v-if="data.poster_path">
-                      <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
+              <div class="movie-row" v-for="(data, index) in movieList">                               
+                <div class="img-preview">
+                  <div v-if="data.poster_path">
+                    <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
+                  </div>
+                  <div v-else>
+                    <div class="no-img">
+                      <div class="logo-cards">
+                        <img src="img/logo/bool.png" alt="">
+                      </div>
+                      <div class="keyName">
+                        <span class="data-imported">
+                          {{data.title}}
+                        </span> 
+                      </div>
                     </div>
-                    <div v-else>
-                      <div class="no-img">
-                        <div class="logo-cards">
-                          <img src="img/logo/bool.png" alt="">
-                        </div>
-                        <div class="keyName">
+                  </div>
+                  <!-- info card film -->
+                  <ul class="film-tab" >
+                    <li class="title">
+                      <div >
+                        <span class="keyName">
+                          Title:
+                          </span>
                           <span class="data-imported">
                           {{data.title}}
                           </span> 
-                        </div>
                       </div>
-                    </div>
-                    <!-- info card film -->
-                    <ul class="film-tab" >
-                      <li class="title">
-                        <div >
-                          <span class="keyName">
-                            Title:
-                            </span>
-                            <span class="data-imported">
-                            {{data.title}}
-                            </span> 
-                        </div>
-                      </li>
-                      <li class="original-title">
-                        <div>
-                          <span class="keyName">
-                            Original Title:
-                          </span>
-                          <span class="data-imported">
-                            {{data.original_title}}
-                          </span> 
-                        </div>
-                      </li>
-                      <li class="language">
+                    </li>
+                    <li class="original-title">
+                      <div>
                         <span class="keyName">
-                          Original Language:
+                          Original Title:
+                        </span>
+                        <span class="data-imported">
+                          {{data.original_title}}
                         </span> 
-                        <span class="data-imported-img" 
-                          v-if="langList.includes(data.original_language)">
-                            <img :src="'img/flags/' + data.original_language + '.png' " >
-                        </span>
-                        <span class="data-imported" v-else>
-                          {{data.original_language}}
-                        </span>
-                      </li>
-                      <li class="vote flex" >
+                      </div>
+                    </li>
+                    <li class="language">
+                      <span class="keyName">
+                        Original Language:
+                      </span> 
+                      <span class="data-imported-img" 
+                        v-if="langList.includes(data.original_language)">
+                          <img :src="'img/flags/' + data.original_language + '.png' " >
+                      </span>
+                      <span class="data-imported" v-else>
+                        {{data.original_language}}
+                      </span>
+                    </li>
+                    <li class="vote flex" >
+                      <span class="keyName">
+                        Vote:
+                      </span>
+                      <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
+                      <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
+                    </li>
+                    <li class="overview-box">
+                      <div class="overview-content">
                         <span class="keyName">
-                          Vote:
+                          Overview:
                         </span>
-                        <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
-                        <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
-                      </li>
-                      <li class="overview-box">
-                        <div class="overview-content">
-                          <span class="keyName">
-                            Overview:
-                          </span>
-                          <span class="data-imported">
-                            {{data.overview}}
-                          </span>
-                        </div>
-                      </li>
-                      <li class="actors-box">
-                        <span @click="isCast(data.id, index), menuVisible(index)">OTHER INFORMATION</span>
-                        <div class="oteher-content" v-if="isMenuVisible(index)">
-                          <ul>
-                            <li>
-                              <span class="keyName" >
-                                Actors:
-                              </span>
-                              <span class="data-imported" v-for="actor in actors" >
-                                {{ actor.name }}                      
-                              </span>
-                            </li>
-                            <li>
-                              <span class="keyName" >
-                                Genres:
-                              </span>
-                              <span class="data-imported" >
-                                {{ data.genre_ids }}                      
-                              </span>
-                            </li>
-                          </ul>
-                          
-                        </div>
-                      </li>
-                    </ul>
-                    <!-- /info card film -->  
-                  </div>  
-                  <!-- / film-tv without img -->            
+                        <span class="data-imported">
+                          {{data.overview}}
+                        </span>
+                      </div>
+                    </li>
+                    <li class="actors-box">
+                      <span @click="areOtherInformation(data.id, index, data.genre_ids)">
+                        OTHER INFORMATION
+                      </span >
+                      <div class="oteher-content" v-if="isMenuVisible(index)">
+                        <ul>
+                          <li>
+                            <span class="keyName" >
+                              Actors:
+                            </span>
+                            <span class="data-imported" v-for="actor in actors" >
+                              {{actor.name}}&#44;&nbsp;                       
+                            </span>
+                          </li>
+                          <li>
+                            <span class="keyName" >
+                              Genres:
+                            </span>
+                            <span class="data-imported" v-for="genName in genreNameCards">
+                              {{genName}}&#44;&nbsp;                     
+                            </span>
+                          </li>
+                        </ul>     
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- /info card film -->  
+                </div>                            
               </div>
-            </div>
-
+            </div>           
           </div>
+          <!-- / film default section --> 
+          <!-- tv default section -->
           <div class="tvRow-box" v-if="userSearch === '' ">
             <div class="sectionDefault-title">
               <span>
@@ -227,8 +228,7 @@
               </span>
             </div>
             <div class="tv-section flex">
-              <div class="tv-row" v-for="(data, index) in tvList"> 
-                <!-- film/tv without img -->
+              <div class="tv-row" v-for="(data, index) in tvList">        
                 <div class="img-preview">
                   <div v-if="data.poster_path">
                     <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
@@ -294,13 +294,39 @@
                         </span>
                       </div>
                     </li>
+                    <li class="actors-box">
+                      <span @click="areOtherInformation(data.id, index, data.genre_ids)">
+                        OTHER INFORMATION
+                      </span >
+                      <div class="oteher-content" v-if="isMenuVisible(index)">
+                        <ul>
+                          <li>
+                            <span class="keyName" >
+                              Actors:
+                            </span>
+                            <span class="data-imported" v-for="actor in actors" >
+                              {{actor.name}}&#44;&nbsp;                       
+                            </span>
+                          </li>
+                          <li>
+                            <span class="keyName" >
+                              Genres:
+                            </span>
+                            <span class="data-imported" v-for="genName in genreNameCards">
+                              {{genName}}&#44;&nbsp;                     
+                            </span>
+                          </li>
+                        </ul>
+                      </div> 
+                    </li>   
                   </ul>
                   <!-- /info card film -->  
                 </div>  
-                <!-- / film-tv without img -->            
+                      
               </div>
             </div>
-          </div>              
+          </div>
+          <!-- /tv default section -->              
           <!-- /DEFAULT VIEW -->
 
           <!-- container search result -->
@@ -373,14 +399,29 @@
                   </div>
                 </li>
                 <li class="actors-box">
-                  <div class="actors-content">
-                    <span class="keyName">
-                      Actors:
-                    </span>
-                    <span class="data-imported">
-                      
-                    </span>
-                  </div>
+                  <span @click="areOtherInformation(data.id, index, data.genre_ids)">
+                    OTHER INFORMATION
+                  </span >
+                  <div class="oteher-content" v-if="isMenuVisible(index)">
+                    <ul>
+                      <li>
+                        <span class="keyName" >
+                          Actors:
+                        </span>
+                        <span class="data-imported" v-for="actor in actors" >
+                          {{actor.name}}&#44;&nbsp;                       
+                        </span>
+                      </li>
+                      <li>
+                        <span class="keyName" >
+                          Genres:
+                        </span>
+                        <span class="data-imported" v-for="genName in genreNameCards">
+                          {{genName}}&#44;&nbsp;                     
+                        </span>
+                      </li>
+                    </ul>
+                  </div> 
                 </li>
               </ul>
               <!-- /info card film -->  
