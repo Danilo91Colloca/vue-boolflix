@@ -31,7 +31,7 @@
               <img src="img/logo/bool.png" alt="">
             </div>
             <div class="navMenu-box">
-              <ul class="navMenu-option flex" name="" id="">
+              <ul class="navMenu-option flex">
                 <li @click="resetSearch()">
                   HOME
                 </li>
@@ -70,7 +70,6 @@
                     </ul>
                   </div>
                    <!-- /menu delle select TV -->
-
                 </li>
               </ul>
             </div>
@@ -86,8 +85,7 @@
               <div class="search-button delete" @click="resetSearch()" >
                 <i class="fas fa-times"></i>
               </div>
-            </div>
-           
+            </div>          
           </div>
           <!-- /right head -->
         </div>        
@@ -123,7 +121,7 @@
               <div class="movie-row" v-for="(data, index) in movieList">                               
                 <div class="img-preview">
                   <div v-if="data.poster_path">
-                    <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
+                    <img :src="imgSrc(data.poster_path)" alt="">
                   </div>
                   <div v-else>
                     <div class="no-img">
@@ -142,7 +140,7 @@
                     <li class="title">
                       <div >
                         <span class="keyName">
-                          Title:
+                          Title: &nbsp;
                           </span>
                           <span class="data-imported">
                           {{data.title}}
@@ -152,7 +150,7 @@
                     <li class="original-title">
                       <div>
                         <span class="keyName">
-                          Original Title:
+                          Original Title: &nbsp;
                         </span>
                         <span class="data-imported">
                           {{data.original_title}}
@@ -161,7 +159,7 @@
                     </li>
                     <li class="language">
                       <span class="keyName">
-                        Original Language:
+                        Original Language: &nbsp;
                       </span> 
                       <span class="data-imported-img" 
                         v-if="langList.includes(data.original_language)">
@@ -173,7 +171,7 @@
                     </li>
                     <li class="vote flex" >
                       <span class="keyName">
-                        Vote:
+                        Vote: &nbsp;
                       </span>
                       <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
                       <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
@@ -183,6 +181,7 @@
                         <span class="keyName">
                           Overview:
                         </span>
+                        <br>
                         <span class="data-imported">
                           {{data.overview}}
                         </span>
@@ -196,18 +195,18 @@
                         <ul>
                           <li>
                             <span class="keyName" >
-                              Actors:
+                              Actors: &nbsp;
                             </span>
                             <span class="data-imported" v-for="actor in actors" >
-                              {{actor.name}}&#44;&nbsp;                       
+                              {{actor.name}}&#44; &nbsp;                       
                             </span>
                           </li>
                           <li>
                             <span class="keyName" >
-                              Genres:
+                              Genres: &nbsp;
                             </span>
                             <span class="data-imported" v-for="genName in genreNameCards">
-                              {{genName}}&#44;&nbsp;                     
+                              {{genName}} &#44; &nbsp;                     
                             </span>
                           </li>
                         </ul>     
@@ -231,7 +230,7 @@
               <div class="tv-row" v-for="(data, index) in tvList">        
                 <div class="img-preview">
                   <div v-if="data.poster_path">
-                    <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
+                    <img :src="imgSrc(data.poster_path)" alt="">
                   </div>
                   <div v-else>
                     <div class="no-img">
@@ -250,7 +249,7 @@
                     <li class="title">
                       <div >
                         <span class="keyName">
-                          Title:
+                          Title: &nbsp;
                           </span>
                           <span class="data-imported">
                           {{data.name}}
@@ -260,7 +259,7 @@
                     <li class="original-title">
                       <div>
                         <span class="keyName">
-                          Original Title:
+                          Original Title: &nbsp;
                         </span>
                         <span class="data-imported">
                           {{data.original_name}}
@@ -279,7 +278,7 @@
                     </li>
                     <li class="vote flex" >
                       <span class="keyName">
-                        Vote:
+                        Vote: &nbsp;
                       </span>
                       <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
                       <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
@@ -287,7 +286,7 @@
                     <li class="overview-box">
                       <div class="overview-content">
                         <span class="keyName">
-                          Overview:
+                          Overview: &nbsp;
                         </span>
                         <span class="data-imported">
                           {{data.overview}}
@@ -302,18 +301,18 @@
                         <ul>
                           <li>
                             <span class="keyName" >
-                              Actors:
+                              Actors: &nbsp;
                             </span>
                             <span class="data-imported" v-for="actor in actors" >
-                              {{actor.name}}&#44;&nbsp;                       
+                              {{actor.name}} &#44; &nbsp;                       
                             </span>
                           </li>
                           <li>
                             <span class="keyName" >
-                              Genres:
+                              Genres: &nbsp; 
                             </span>
                             <span class="data-imported" v-for="genName in genreNameCards">
-                              {{genName}}&#44;&nbsp;                     
+                              {{genName}} &#44; &nbsp;                     
                             </span>
                           </li>
                         </ul>
@@ -322,20 +321,19 @@
                   </ul>
                   <!-- /info card film -->  
                 </div>  
-                      
               </div>
             </div>
           </div>
           <!-- /tv default section -->              
           <!-- /DEFAULT VIEW -->
-
+          <!-- //////////////////////\\\\\\\\\\\\\\\\\\\-->
           <!-- container search result -->
-          <div class="searchResult-container flex" v-for="(data, index) in allSearchList" v-else>
-            
+          <div class="searchResult-container flex" 
+            v-for="(data, index) in allSearchList" v-else>          
             <!-- film/tv with/without img -->
             <div class="img-preview">
               <div v-if="data.poster_path">
-                <img :src="'http://image.tmdb.org/t/p/w342/'+data.poster_path" alt="">
+                <img :src="imgSrc(data.poster_path)" alt="">
               </div>
               <div v-else>
                 <div class="no-img">
@@ -354,7 +352,7 @@
                 <li class="title">
                   <div >
                     <span class="keyName">
-                      Title:
+                      Title: &nbsp;
                       </span>
                       <span class="data-imported">
                       {{isFilmTvParam(data.title, data.name)}}
@@ -364,7 +362,7 @@
                 <li class="original-title">
                   <div>
                     <span class="keyName">
-                      Original Title:
+                      Original Title: &nbsp;
                     </span>
                     <span class="data-imported">
                       {{isFilmTvParam(data.original_title, data.original_name)}}
@@ -372,7 +370,9 @@
                   </div>
                 </li>
                 <li class="language">
-                  <span class="keyName">Original Language:</span> 
+                  <span class="keyName">
+                    Original Language: &nbsp;
+                  </span> 
                   <span class="data-imported-img" 
                     v-if="langList.includes(data.original_language)">
                     <img :src="'img/flags/' + data.original_language + '.png' " >
@@ -383,7 +383,7 @@
                 </li>
                 <li class="vote flex" >
                   <span class="keyName">
-                    Vote:
+                    Vote: &nbsp;
                   </span>
                   <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
                   <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
@@ -393,6 +393,7 @@
                     <span class="keyName">
                       Overview:
                     </span>
+                    <br>
                     <span class="data-imported">
                       {{data.overview}}
                     </span>
@@ -406,18 +407,18 @@
                     <ul>
                       <li>
                         <span class="keyName" >
-                          Actors:
+                          Actors: &nbsp;
                         </span>
                         <span class="data-imported" v-for="actor in actors" >
-                          {{actor.name}}&#44;&nbsp;                       
+                          {{actor.name}} &#44; &nbsp;                       
                         </span>
                       </li>
                       <li>
                         <span class="keyName" >
-                          Genres:
+                          Genres: &nbsp;
                         </span>
                         <span class="data-imported" v-for="genName in genreNameCards">
-                          {{genName}}&#44;&nbsp;                     
+                          {{genName}} &#44; &nbsp;                     
                         </span>
                       </li>
                     </ul>
@@ -435,7 +436,7 @@
       <!-- /PAGE WRAPPER -->
     </div>
     <!-- /VUE JS APP -->
-
+    <!--/////////////////////\\\\\\\\\\\\\\-->
     <!-- script js -->
     <script src="js/script.js"></script>
   </body>

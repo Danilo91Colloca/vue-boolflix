@@ -18,7 +18,9 @@ ul {
 .header-section {
   width: 100vw;
   height: 70px;
-  background-image: linear-gradient(180deg, rgba(000,000,000, 1),rgba(000,000,000, 0.8),rgba(000,000,000, 0));
+  background-image: linear-gradient(
+    180deg, rgba(000,000,000, 1),rgba(000,000,000, 0.8),rgba(000,000,000, 0)
+    );
   justify-content: space-between;
   align-items: center;
   padding: 0px 35px;
@@ -35,7 +37,6 @@ ul {
   background-color: black;
   top: 100%; 
 }
-
 .select-box ul>li.generi {
   color: lightslategray;
   line-height: 30px;
@@ -85,7 +86,6 @@ ul {
 .searchResult-container {
   margin-top: 70px;
 }
-
 /*>>>>>>>>>>>>>>>>>>>>>>> STYLE SECTION <<<<<<<<<<<<<<<<<<<<<*/
 .header-nav.left {
   align-items: center;
@@ -111,7 +111,6 @@ ul {
   color: #fff;
   cursor: pointer;
 }
-
 .searchInput{
   outline: none;
   border: none;
@@ -124,7 +123,6 @@ ul {
 .search-button.delete {
   margin-left: 10px;
 }
-
 /*+++++++++++++++main+++++++++*/
 /*default view*/
 .movieRow-box,
@@ -145,7 +143,6 @@ ul {
   margin-top: 80px;
   margin-bottom: 20px;
 }
-
 /*search view*/
 .film-tab {
   width: 342px;
@@ -161,7 +158,9 @@ ul {
   transition: background-color;
   transition-duration: 2s;
 }
-
+.film-tab li {
+  margin-bottom: 15px;
+}
 .searchResult-container:hover .film-tab,
 .img-preview:hover .film-tab {
   display: block;
@@ -173,7 +172,6 @@ ul {
 .data-imported {
   font-size: 14px;
 }
-
 .data-imported-img > img {
   width: 18px;
   vertical-align: middle;
@@ -210,4 +208,8 @@ ul {
 }
 .logo-cards {
   margin-bottom: 20px;
+}
+.actors-box > span { 
+ cursor: pointer;
+ text-decoration: underline;
 }
