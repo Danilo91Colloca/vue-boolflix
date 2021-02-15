@@ -1,6 +1,8 @@
 new Vue ({
   el : '#app',
   data : {
+    apiKey : 'd6a99b8f732b4dd111faf2e38c0dc146',
+    pageNotFound: false,
     userSearch: '', //input model
     movieList : [], //only movie
     tvList : [], //only tv
@@ -16,8 +18,10 @@ new Vue ({
     },
     actors: [],
     genreNameCards: []
-  },
-  mounted () {
+  }, 
+  mounted() {
+    this.apiKeyNotValid()
+
     this.defaultCall(); 
     this.getMovieGenre(); //richiesta generi dei movies
     this.getTvGenre(); //richiesta generi tv 
@@ -31,7 +35,7 @@ new Vue ({
       axios /* chiamata xhr per la sezione FILM */
       .get('https://api.themoviedb.org/3/movie/popular', {
           params: {
-          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146'
+          api_key : this.apiKey
         }
       })
       .then((returned)=>{
@@ -41,7 +45,7 @@ new Vue ({
       axios /*chiamata xhr per la sezione TV*/ 
       .get('https://api.themoviedb.org/3/tv/popular', {
         params: {
-          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+          api_key : this.apiKey,
           query : this.randomLetter() //query random 
         }
       })
@@ -69,7 +73,7 @@ new Vue ({
       axios /* chiamata xhr per la sezione FILM */
       .get('https://api.themoviedb.org/3/search/movie', {
           params: {
-          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+          api_key : this.apiKey,
           query : userType,
           language : 'it_IT' 
         }
@@ -83,7 +87,7 @@ new Vue ({
       axios /*chiamata xhr per la sezione TV*/ 
       .get('https://api.themoviedb.org/3/search/tv', {
         params: {
-          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+          api_key : this.apiKey,
           query : userType
         }
       })
@@ -96,7 +100,7 @@ new Vue ({
       axios /* chiamata xhr per person */
       .get('https://api.themoviedb.org/3/search/person', {
           params: {
-          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+          api_key : this.apiKey,
           query : userType,
           language : 'it_IT' 
         }
@@ -115,7 +119,7 @@ new Vue ({
         axios
         .get('https://api.themoviedb.org/3/genre/movie/list', {
           params: {
-            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+            api_key : this.apiKey,
             language : 'it_IT' 
           }
         })
@@ -127,7 +131,7 @@ new Vue ({
         axios
         .get('https://api.themoviedb.org/3/genre/tv/list', {
           params: {
-            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+            api_key : this.apiKey,
             language : 'it_IT' 
           }
         })
@@ -151,7 +155,7 @@ new Vue ({
       axios /* chiamata xhr per la sezione FILM */
       .get('https://api.themoviedb.org/3/search/movie', {
           params: {
-          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+          api_key : this.apiKey,
           query : this.randomLetter(), //query random
           language : 'it_IT' 
         }
@@ -183,7 +187,7 @@ new Vue ({
       axios /*chiamata xhr per la sezione TV*/ 
       .get('https://api.themoviedb.org/3/search/tv', {
         params: {
-          api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+          api_key : this.apiKey,
           query : this.randomLetter() //query random 
         }
       })
@@ -225,7 +229,7 @@ new Vue ({
         axios /* chiamata xhr per la sezione FILM */
         .get('https://api.themoviedb.org/3/search/movie', {
             params: {
-            api_key : 'd6a99b8f732b4dd111faf2e38c0dc146',
+            api_key : this.apiKey,
             query : this.randomLetter(), //query random
             language : 'it_IT' 
           }
@@ -276,7 +280,7 @@ new Vue ({
     }, 
     isCast: function(filmID){ //richiede oggetti contenente attori
       axios
-      .get('https://api.themoviedb.org/3/movie/' + filmID + '/credits?api_key=d6a99b8f732b4dd111faf2e38c0dc146')
+      .get('https://api.themoviedb.org/3/movie/' + filmID + '/credits?api_key=' + this.apiKey)
       .then((response)=>{
         this.actors = response.data.cast
         this.isActor()
@@ -324,6 +328,16 @@ new Vue ({
       }
       return result
     },
+    //ERROR ALERT
+    apiKeyNotValid: function(){
+      if(this.apiKey.length < 32){ //if apikey.length change
+        this.pageNotFound = true
+        console.log('ALERT! API_KEY IS WRONG IN LENGTH')
+      }else if(this.apiKey !== 'd6a99b8f732b4dd111faf2e38c0dc146'){
+        this.pageNotFound = true
+        console.log('ALERT! API_KEY IS NOT VALID')
+      }    
+    }
   }
 })
 Vue.config.devtools = true;

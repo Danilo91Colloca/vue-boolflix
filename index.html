@@ -21,8 +21,16 @@
   <body>
     <!-- VUE JS APP -->
     <div id="app">
-        <!-- PAGE WRAPPER -->
-      <div class="page-wrapper">
+      <div id="bestCrash" v-if="pageNotFound === true">
+        <div class="alert">
+          <img src="img/generic/something-somewhere-went-terribly-wrong1360539-mugs.jpg" alt="">
+          <h1>IL NOSTRO SITO AL MOMENTO NON E' RAGGIUNGIBILE</h1>
+          <h1>CI SCUSIAMO PER IL DISAGIO</h1>
+        </div>
+        
+      </div>
+      <!-- PAGE WRAPPER -->
+      <div class="page-wrapper" v-else>
         <!-- HEADER -->
         <div class="header-section flex">
           <!-- left header -->
