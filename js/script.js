@@ -330,14 +330,19 @@ new Vue ({
     },
     //ERROR ALERT
     apiKeyNotValid: function(){
+      let self=this;
       if(this.apiKey.length < 32){ //if apikey.length change
-        this.pageNotFound = true
-        console.log('ALERT! API_KEY IS WRONG IN LENGTH')
+        setTimeout(function(){
+          self.pageNotFound = true
+          console.log('ALERT! API_KEY IS WRONG IN LENGTH')
+        }, 900)        
       }else if(this.apiKey !== 'd6a99b8f732b4dd111faf2e38c0dc146'){
-        this.pageNotFound = true
-        console.log('ALERT! API_KEY IS NOT VALID')
+        setTimeout(function(){
+          self.pageNotFound = true
+          console.log('ALERT! API_KEY IS NOT VALID')
+        }, 900)
       }    
-    }
+    }   
   }
 })
 Vue.config.devtools = true;

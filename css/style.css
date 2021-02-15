@@ -14,6 +14,14 @@ ul {
 .flex {
   display: flex;
 }
+.search-noResult {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /*>>>>>>>>>>>>>>>>>>>>>> LAYOUT SECTION <<<<<<<<<<<<<<<<<<*/
 #bestCrash {
   width: 100vw;

@@ -26,8 +26,7 @@
           <img src="img/generic/something-somewhere-went-terribly-wrong1360539-mugs.jpg" alt="">
           <h1>IL NOSTRO SITO AL MOMENTO NON E' RAGGIUNGIBILE</h1>
           <h1>CI SCUSIAMO PER IL DISAGIO</h1>
-        </div>
-        
+        </div>  
       </div>
       <!-- PAGE WRAPPER -->
       <div class="page-wrapper" v-else>
@@ -98,6 +97,12 @@
           <!-- /right head -->
         </div>        
         <!-- /HEADER -->
+        <!-- search not valid-->
+        <div class="search-noResult" v-if="allSearchList.length === 0">
+          <img src="img/logo/bool.png" alt="">
+          <h1>LA TUA RICERCA NON È ANDATA A BUON FINE</h1>  
+        </div>
+        <!-- search not valid-->
         <!-- jumbotron -->
         <div class="jumbotron" v-if="userSearch === ''">
           <div class="jumbo-label">
