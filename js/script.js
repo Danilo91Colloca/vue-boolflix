@@ -21,7 +21,6 @@ new Vue ({
   }, 
   mounted() {
     this.apiKeyNotValid()
-
     this.defaultCall(); 
     this.getMovieGenre(); //richiesta generi dei movies
     this.getTvGenre(); //richiesta generi tv 

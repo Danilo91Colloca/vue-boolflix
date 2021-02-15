@@ -226,7 +226,7 @@
                       </div>
                     </li>
                   </ul>
-                  <!-- /info card film -->  
+                  <!-- /info card film --> 
                 </div>                            
               </div>
             </div>           
@@ -398,8 +398,12 @@
                   <span class="keyName">
                     Vote: &nbsp;
                   </span>
-                  <i class="fas fa-star" v-for="index in starsVote(data.vote_average)"></i>
-                  <i class="far fa-star" v-for="index in (5-starsVote(data.vote_average))"></i>
+                  <i class="fas fa-star" 
+                  v-for="index in starsVote(data.vote_average)">
+                  </i>
+                  <i class="far fa-star" 
+                  v-for="index in (5-starsVote(data.vote_average))">
+                  </i>
                 </li>
                 <li class="overview-box">
                   <div class="overview-content">
@@ -413,7 +417,8 @@
                   </div>
                 </li>
                 <li class="actors-box">
-                  <span @click="areOtherInformation(data.id, index, data.genre_ids)">
+                  <span 
+                    @click="areOtherInformation(data.id, index, data.genre_ids)">
                     OTHER INFORMATION
                   </span >
                   <div class="oteher-content" v-if="isMenuVisible(index)">
@@ -422,7 +427,8 @@
                         <span class="keyName" >
                           Actors: &nbsp;
                         </span>
-                        <span class="data-imported" v-for="actor in actors" >
+                        <span class="data-imported" 
+                          v-for="actor in actors">
                           {{actor.name}} &#44; &nbsp;                       
                         </span>
                       </li>
@@ -430,7 +436,8 @@
                         <span class="keyName" >
                           Genres: &nbsp;
                         </span>
-                        <span class="data-imported" v-for="genName in genreNameCards">
+                        <span class="data-imported" 
+                          v-for="genName in genreNameCards">
                           {{genName}} &#44; &nbsp;                     
                         </span>
                       </li>
